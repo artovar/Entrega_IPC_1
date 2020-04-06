@@ -28,15 +28,15 @@
       <ImageView fitHeight="71.0" fitWidth="376.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.halignment="CENTER" />
       <Label text="Login: " GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
       <Label text="Contraseña: " GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-      <TextField GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+      <TextField fx:id="loginText" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="20.0" right="50.0" />
          </GridPane.margin>
       </TextField>
-      <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="188.0" text="Entrar" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-      <Label text="Aun no tienes cuenta? Registrate" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-      <Label text="Ver reservas sin registrarme" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-      <PasswordField GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+      <Button fx:id="logInButton" mnemonicParsing="false" onAction="#entrarMain" prefHeight="65.0" prefWidth="188.0" text="Entrar" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Label fx:id="registerLabel" onMouseClicked="#entrarRegistro" text="Aun no tienes cuenta? Registrate" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <Label fx:id="reservasLabel" onMouseClicked="#entrarReservasSinRegistro" text="Ver reservas sin registrarme" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+      <PasswordField fx:id="passText" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="20.0" right="50.0" />
          </GridPane.margin>
