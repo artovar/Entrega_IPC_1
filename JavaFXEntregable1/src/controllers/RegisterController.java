@@ -6,14 +6,21 @@
 package controllers;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 /**
  * FXML Controller class
@@ -44,17 +51,119 @@ public class RegisterController implements Initializable {
     private RadioButton image2;
     @FXML
     private RadioButton image3;
+    @FXML
+    private ToggleGroup Radio;
 
+    
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       phoneText.textProperty().addListener(new ChangeListener<String>(){
+           @Override
+           public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+               if(!newValue.matches("\\d*")) {
+                   phoneText.setText(newValue.replaceAll("[^\\d]", ""));
+               }
+           }
+       });
+       
+       svcText.textProperty().addListener(new ChangeListener<String>(){
+           @Override
+           public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+               if(!newValue.matches("\\d*")) {
+                   svcText.setText(newValue.replaceAll("[^\\d]", ""));
+               }
+           }
+       });
+       
+       creditText.textProperty().addListener(new ChangeListener<String>(){
+           @Override
+           public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+               if(!newValue.matches("\\d*")) {
+                   creditText.setText(newValue.replaceAll("[^\\d]", ""));
+               }
+           }
+       });
+       
     }    
 
     @FXML
     private void registerButton(ActionEvent event) {
+        String aux = wrongField();
+        if (!(aux == "")) {
+           Alert alert = new Alert(AlertType.ERROR);
+           alert.setTitle("Error en el registro");
+           alert.setHeaderText("Vaya parece que hemos tenido un error al registrarte...");
+           alert.setContentText("Rellene de forma correcta los siguientes campos " +aux );
+           
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK){
+            System.out.println("OK");
+            } else {
+            System.out.println("CANCEL");
+}
+        }
+        
     }
     
-}
+    private void sinLetrasPhone(){
+        String aux=null;
+        if(phoneText.getText().matches("[0-9]*")){
+            aux=phoneText.getText();
+        }
+        else{aux=null;}
+        phoneText.setText(aux);
+    }
+    
+    private void cambio(ObservableValue<? extends String> observable, String oldValue, String newValue){
+        if(!newValue.matches("\\d*")){
+            phoneText.setText(newValue.replaceAll("[^\\d]",""));
+        }
+    }
+    private String wrongField(){
+        String wrong = "";
+        if(nameText.getText().isEmpty()){
+            wrong += " Nombre ";
+        }
+        if(surnameText.getText().isEmpty() || !surnameText.getText().contains(" ")){
+            wrong += " Apellidos ";
+        }
+        if( !((phoneText.getText().length()) == 9)){
+            wrong += " Telefono ";
+        }
+        if(loginText.getText().isEmpty() || loginText.getText().contains(" ")){
+            wrong += " Login ";
+        }
+        if(!((creditText.getText().length()) == 12)){
+            wrong += " Tarjeta crédito ";
+        }
+        if(!((svcText.getText().length()) == 3)){
+            wrong += " SVC ";
+        }
+        if(passText.getText().isEmpty() || !containsNumber(passText) || ((passText.getText().length()) < 6)){
+            wrong += " Password ";
+        }
+        if(!image1.isSelected() && !image2.isSelected() && !image3.isSelected()){
+            wrong += " Foto de Perfil ";
+        }
+        return wrong;
+    }
+    
+    private boolean containsNumber(PasswordField pass){
+        if(pass.getText().contains("0")){ return true;}
+        else if(pass.getText().contains("1")){ return true;}
+        else if(pass.getText().contains("2")){ return true;}
+        else if(pass.getText().contains("3")){ return true;}
+        else if(pass.getText().contains("4")){ return true;}
+        else if(pass.getText().contains("5")){ return true;}
+        else if(pass.getText().contains("6")){ return true;}
+        else if(pass.getText().contains("7")){ return true;}
+        else if(pass.getText().contains("8")){ return true;}
+        else if(pass.getText().contains("9")){ return true;}
+        else{return false;}
+    }
+}   
+

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -78,15 +79,18 @@
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
+         <toggleGroup>
+            <ToggleGroup fx:id="Radio" />
+         </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="image2" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="4">
+      <RadioButton fx:id="image2" mnemonicParsing="false" toggleGroup="$Radio" GridPane.columnIndex="2" GridPane.rowIndex="4">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
       </RadioButton>
-      <RadioButton fx:id="image3" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="6">
+      <RadioButton fx:id="image3" mnemonicParsing="false" toggleGroup="$Radio" GridPane.columnIndex="2" GridPane.rowIndex="6">
          <graphic>
-            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="Radio" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
       </RadioButton>
    </children>
