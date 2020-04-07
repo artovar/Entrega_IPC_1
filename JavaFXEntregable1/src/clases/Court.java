@@ -11,4 +11,14 @@ package clases;
  */
 public class Court {
     
+    private String name;
+
+
+    public Court(String n){
+        name =n;
+    }
+
+    public void setName(String n) {name = n;}
+    public String getName() {return name;}
+
 }

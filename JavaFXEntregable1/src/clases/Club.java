@@ -22,6 +22,39 @@ public class Club {
     ArrayList<Member> members;
     ArrayList<Booking> bookings;
     
+    public Club(String n, ArrayList<Court> c, ArrayList<Member> m, ArrayList<Booking> b) {
+        
+        name = n;
+        courts = c;
+        members = m;
+        bookings = b;
+    
+    }
+    
+    
+    public void setName(String n) {name =n;}
+    public String getName() {return name;}
+
+    public void setCourts(ArrayList<Court> c) { courts = c;}
+    public ArrayList<Court> getCourts() {return courts;}
+
+    public void setMembers(ArrayList<Member> m) {members = m;}
+    public ArrayList<Member> getMembers() {return members;} 
+    
+    public void setBooking(ArrayList<Booking> b) {bookings = b;}
+    public ArrayList<Booking> getBookings() {return bookings;}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }
