@@ -6,6 +6,9 @@
 package controllers;
 
 import DBAcess.ClubDBAccess;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import model.Member;
 import java.net.URL;
 import java.util.Optional;
@@ -24,6 +27,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -50,13 +55,21 @@ public class RegisterController implements Initializable {
     @FXML
     private PasswordField passText;
     @FXML
-    private RadioButton image1;
-    @FXML
-    private RadioButton image2;
-    @FXML
-    private RadioButton image3;
-    @FXML
     private ToggleGroup Radio;
+    @FXML
+    private RadioButton Radio1;
+    @FXML
+    private ImageView Image1;
+    @FXML
+    private RadioButton Radio2;
+    @FXML
+    private ImageView Image2;
+    @FXML
+    private RadioButton Radio3;
+    @FXML
+    private ImageView Image3;
+    
+    
     
      
    
@@ -117,7 +130,7 @@ public class RegisterController implements Initializable {
 }
         }
         else{
-            clubDBAcess.getMembers().add(new Member(nameText.getText(), surnameText.getText(), phoneText.getText(), loginText.getText(), passText.getText(), creditText.getText(), svcText.getText(), null  ));
+            clubDBAcess.getMembers().add(new Member(nameText.getText(), surnameText.getText(), phoneText.getText(), loginText.getText(), passText.getText(), creditText.getText(), svcText.getText(), selectedImage()  ));
             clubDBAcess.saveDB();
             ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
         }
@@ -186,13 +199,17 @@ public class RegisterController implements Initializable {
         else{return false;}
     }
     
-    private RadioButton selectedImage(){
-        RadioButton res = null;
-        if(image1.isSelected()){res = image1;}
-        else if(image2.isSelected()){res = image2;}
-        else if(image3.isSelected()){res = image3;}
-        return res;
+    
+    private Image selectedImage(){
+        
+        if(Radio1.isSelected()){ return Image1.getImage();}
+        else if(Radio2.isSelected()){return Image2.getImage();}
+        else if(Radio3.isSelected()){return Image3.getImage();}
+        else{return null;}
+        
     }
+
+    
     
    
 }   

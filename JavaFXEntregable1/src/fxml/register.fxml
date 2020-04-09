@@ -7,6 +7,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -75,22 +76,31 @@
          </GridPane.margin>
       </PasswordField>
       <ImageView fitHeight="81.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true" />
-      <RadioButton fx:id="image1" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <RadioButton fx:id="Radio1" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <graphic>
-            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="Image1" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/men.PNG" />
+               </image></ImageView>
          </graphic>
          <toggleGroup>
             <ToggleGroup fx:id="Radio" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="image2" mnemonicParsing="false" toggleGroup="$Radio" GridPane.columnIndex="2" GridPane.rowIndex="4">
+      <RadioButton fx:id="Radio2" mnemonicParsing="false" toggleGroup="$Radio" GridPane.columnIndex="2" GridPane.rowIndex="4">
          <graphic>
-            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="Image2" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/woman.PNG" />
+               </image></ImageView>
          </graphic>
       </RadioButton>
-      <RadioButton fx:id="image3" mnemonicParsing="false" toggleGroup="$Radio" GridPane.columnIndex="2" GridPane.rowIndex="6">
+      <RadioButton fx:id="Radio3" mnemonicParsing="false" toggleGroup="$Radio" GridPane.columnIndex="2" GridPane.rowIndex="6">
          <graphic>
-            <ImageView id="Radio" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="Image3" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/imagen.jpg" />
+               </image></ImageView>
          </graphic>
       </RadioButton>
    </children>
