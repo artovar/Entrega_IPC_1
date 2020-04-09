@@ -6,6 +6,9 @@
 package controllers;
 
 import DBAcess.ClubDBAccess;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.io.IOException;
 import model.Member;
 import java.net.URL;
 import java.util.Optional;
@@ -54,11 +57,34 @@ public class loginController implements Initializable {
     }    
 
     @FXML
-    private void entrarMain(ActionEvent event) {
+    private void entrarMain(ActionEvent event) throws IOException {
         ClubDBAccess clubDBAcess;
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
-        if(clubDBAcess.getMemberByCredentials(loginText.getText(), passText.getText()) != null){
+        Member mem = clubDBAcess.getMemberByCredentials(loginText.getText(), passText.getText());
+        if( mem != null){
             System.out.println("funciona"); //cambiar por cargador de ventana main
+            
+            FXMLLoader main = new FXMLLoader(getClass().getResource("/fxml/FXMLDocument.fxml"));
+            Parent root = (Parent) main.load();
+            FXMLDocumentController mainController = main.<FXMLDocumentController>getController();
+            mainController.initMember(mem,true);
+            
+            //tomamos los valores del dispositivo para ajustar la nueva ventana a una proporcion concreta
+            GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+            int width = gd.getDisplayMode().getWidth();
+            int height = gd.getDisplayMode().getHeight();
+            
+            Scene mainScene = new Scene(root,width*0.75,height*0.75);
+            Stage mainStage = new Stage();
+            mainStage.setScene(mainScene);
+            mainStage.setTitle("Paddle Club Premium");
+            mainStage.initModality(Modality.APPLICATION_MODAL);
+            
+            Stage loginStage = (Stage) this.logInButton.getScene().getWindow();
+            loginStage.close();
+            mainStage.show();
+
+            
         }
          else{
             Alert alert = new Alert(AlertType.ERROR);
@@ -83,6 +109,9 @@ public class loginController implements Initializable {
 
     @FXML
     private void entrarReservasSinRegistro(MouseEvent event) {
+        
+        
+        
     }
     
 }

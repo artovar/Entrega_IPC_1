@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -17,15 +18,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="823.0" prefWidth="1065.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLDocumentController">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutY="150.0" prefHeight="30.0" prefWidth="190.0" text="Mi Usuario" textAlignment="CENTER">
+      <ImageView fitHeight="190.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Logo.png" />
+         </image></ImageView>
+      <Label fx:id="usernameLabelFXID" alignment="CENTER" contentDisplay="CENTER" layoutY="190.0" prefHeight="38.0" prefWidth="190.0" text="Mi Usuario" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <VBox layoutY="180.0" prefHeight="650.0" prefWidth="190.0">
+      <VBox layoutY="228.0" prefHeight="602.0" prefWidth="190.0">
          <children>
-            <Button fx:id="PistasButtonFXID" mnemonicParsing="false" onAction="#selecPistas" prefHeight="71.0" prefWidth="202.0" style="-fx-font-size: 25;" text="PISTAS" textAlignment="CENTER">
+            <Button fx:id="PistasButtonFXID" mnemonicParsing="false" onAction="#selecPistas" prefHeight="71.0" prefWidth="190.0" style="-fx-font-size: 25;" text="PISTAS" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -70,7 +74,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ListView layoutY="1.0" prefHeight="763.0" prefWidth="876.0" />
+                        <ListView fx:id="ListViewReservasFXID" layoutY="1.0" prefHeight="763.0" prefWidth="876.0" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -78,7 +82,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="763.0" prefWidth="890.0">
                      <children>
-                        <TableView prefHeight="763.0" prefWidth="876.0">
+                        <TableView fx:id="TableViewDisponibilidadFXID" prefHeight="763.0" prefWidth="876.0">
                           <columns>
                             <TableColumn prefWidth="111.0" text="Hora" />
                             <TableColumn prefWidth="111.0" text="Dia 1" />

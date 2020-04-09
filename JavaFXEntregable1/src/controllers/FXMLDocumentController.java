@@ -12,7 +12,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableView;
+import model.Member;
 
 /**
  *
@@ -20,7 +23,7 @@ import javafx.scene.control.Tab;
  */
 public class FXMLDocumentController implements Initializable {
     
-    private Label label;
+    
     @FXML
     private Button PistasButtonFXID;
     @FXML
@@ -34,26 +37,60 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Tab DisponibilidadTabFXID;
     
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
     
+    private String username;
+    
+    @FXML
+    private Label usernameLabelFXID;
+    @FXML
+    private ListView<?> ListViewReservasFXID;
+    @FXML
+    private TableView<?> TableViewDisponibilidadFXID;
+    
+     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        
+        
     }    
 
     @FXML
     private void selecPistas(ActionEvent event) {
+        
+        PistasTabFXID.closableProperty().set(true);
     }
 
     @FXML
     private void selecResevas(ActionEvent event) {
+        ReservasTabFXID.closableProperty().set(true);
+        
     }
 
     @FXML
     private void selecDisponibilidad(ActionEvent event) {
+        ReservasTabFXID.closableProperty().set(true);
+    }
+    
+    public void initMember(Member men,Boolean registered) {
+        
+        username = men.getLogin();
+        usernameLabelFXID.setText(username);
+        
+        if(registered) {
+        
+        //Pues aqui habilitaresmos los tabs de mis reservas y de hacer reservas
+        
+        
+        }
+        else{
+        //Aqui dejamos deshabilitadas las opciones puesto que entra como invitado
+        usernameLabelFXID.setText("Invitado");
+        }
+        
+        
+        
     }
     
 }
