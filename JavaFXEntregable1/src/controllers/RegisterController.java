@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import DBAcess.ClubDBAccess;
+import model.Member;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -13,6 +15,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -21,6 +24,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -53,6 +57,10 @@ public class RegisterController implements Initializable {
     private RadioButton image3;
     @FXML
     private ToggleGroup Radio;
+    
+     
+   
+    
 
     
     /**
@@ -92,6 +100,8 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void registerButton(ActionEvent event) {
+        ClubDBAccess clubDBAcess;
+        clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
         String aux = wrongField();
         if (!(aux == "")) {
            Alert alert = new Alert(AlertType.ERROR);
@@ -105,6 +115,11 @@ public class RegisterController implements Initializable {
             } else {
             System.out.println("CANCEL");
 }
+        }
+        else{
+            clubDBAcess.getMembers().add(new Member(nameText.getText(), surnameText.getText(), phoneText.getText(), loginText.getText(), passText.getText(), creditText.getText(), svcText.getText(), null  ));
+            clubDBAcess.saveDB();
+            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
         }
         
     }
@@ -124,6 +139,8 @@ public class RegisterController implements Initializable {
         }
     }
     private String wrongField(){
+        ClubDBAccess clubDBAcess;
+        clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
         String wrong = "";
         if(nameText.getText().isEmpty()){
             wrong += " Nombre ";
@@ -146,8 +163,11 @@ public class RegisterController implements Initializable {
         if(passText.getText().isEmpty() || !containsNumber(passText) || ((passText.getText().length()) < 6)){
             wrong += " Password ";
         }
-        if(!image1.isSelected() && !image2.isSelected() && !image3.isSelected()){
+        if(selectedImage() == null){
             wrong += " Foto de Perfil ";
+        }
+        if(clubDBAcess.existsLogin(loginText.getText()) ){
+            wrong += "El nombre que has elegido ya esta en uso";
         }
         return wrong;
     }
@@ -165,5 +185,15 @@ public class RegisterController implements Initializable {
         else if(pass.getText().contains("9")){ return true;}
         else{return false;}
     }
+    
+    private RadioButton selectedImage(){
+        RadioButton res = null;
+        if(image1.isSelected()){res = image1;}
+        else if(image2.isSelected()){res = image2;}
+        else if(image3.isSelected()){res = image3;}
+        return res;
+    }
+    
+   
 }   
 
