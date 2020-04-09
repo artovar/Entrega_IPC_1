@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 
 /**
  *
@@ -19,12 +20,20 @@ import javafx.scene.control.Label;
  */
 public class FXMLDocumentController implements Initializable {
     
-    @FXML
     private Label label;
     @FXML
-    private Button button;
-    
+    private Button PistasButtonFXID;
     @FXML
+    private Button MisReservasButtonFXID;
+    @FXML
+    private Button DisponibilidadButtonFXID;
+    @FXML
+    private Tab PistasTabFXID;
+    @FXML
+    private Tab ReservasTabFXID;
+    @FXML
+    private Tab DisponibilidadTabFXID;
+    
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
@@ -34,5 +43,17 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void selecPistas(ActionEvent event) {
+    }
+
+    @FXML
+    private void selecResevas(ActionEvent event) {
+    }
+
+    @FXML
+    private void selecDisponibilidad(ActionEvent event) {
+    }
     
 }
