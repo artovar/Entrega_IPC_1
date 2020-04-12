@@ -9,12 +9,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Member;
 
 /**
@@ -46,6 +51,14 @@ public class FXMLDocumentController implements Initializable {
     private ListView<?> ListViewReservasFXID;
     @FXML
     private TableView<?> TableViewDisponibilidadFXID;
+    @FXML
+    private Button pista1;
+    @FXML
+    private Button pista2;
+    @FXML
+    private Button pista3;
+    @FXML
+    private Button pista4;
     
      
     @Override
@@ -58,7 +71,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void selecPistas(ActionEvent event) {
-        
         PistasTabFXID.closableProperty().set(true);
     }
 
@@ -91,6 +103,48 @@ public class FXMLDocumentController implements Initializable {
         
         
         
+    }
+
+    @FXML
+    private void reservar(ActionEvent event) throws Exception {
+        
+        if(event.getSource().equals(pista1)){
+            
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Registro");
+            stage.setScene(new Scene(root1));  
+            stage.show();
+        }
+        if(event.getSource().equals(pista2)){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Registro");
+            stage.setScene(new Scene(root1));  
+            stage.show();
+        }
+        if(event.getSource().equals(pista3)){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Registro");
+            stage.setScene(new Scene(root1));  
+            stage.show();
+        }
+        if(event.getSource().equals(pista4)){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Registro");
+            stage.setScene(new Scene(root1));  
+            stage.show();
+        }
     }
     
 }

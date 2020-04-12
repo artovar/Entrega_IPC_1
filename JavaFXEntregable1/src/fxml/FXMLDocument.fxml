@@ -61,10 +61,10 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="428.0" prefWidth="479.0" text="PISTA 1" />
-                              <Button mnemonicParsing="false" prefHeight="428.0" prefWidth="479.0" text="PISTA 2" GridPane.columnIndex="1" />
-                              <Button mnemonicParsing="false" prefHeight="428.0" prefWidth="479.0" text="PISTA 3" GridPane.rowIndex="1" />
-                              <Button mnemonicParsing="false" prefHeight="428.0" prefWidth="479.0" text="PISTA 4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Button fx:id="pista1" mnemonicParsing="false" onAction="#reservar" prefHeight="428.0" prefWidth="479.0" text="PISTA 1" />
+                              <Button fx:id="pista2" mnemonicParsing="false" onAction="#reservar" prefHeight="428.0" prefWidth="479.0" text="PISTA 2" GridPane.columnIndex="1" />
+                              <Button fx:id="pista3" mnemonicParsing="false" onAction="#reservar" prefHeight="428.0" prefWidth="479.0" text="PISTA 3" GridPane.rowIndex="1" />
+                              <Button fx:id="pista4" mnemonicParsing="false" onAction="#reservar" prefHeight="428.0" prefWidth="479.0" text="PISTA 4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </children></AnchorPane>
