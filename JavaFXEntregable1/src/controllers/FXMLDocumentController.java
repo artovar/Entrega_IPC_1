@@ -16,7 +16,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -59,30 +61,33 @@ public class FXMLDocumentController implements Initializable {
     private Button pista3;
     @FXML
     private Button pista4;
+    @FXML
+    private TabPane TabPaneFXID;
+    
     
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        
-        
+  
     }    
 
     @FXML
     private void selecPistas(ActionEvent event) {
-        PistasTabFXID.closableProperty().set(true);
-    }
-
-    @FXML
-    private void selecResevas(ActionEvent event) {
-        ReservasTabFXID.closableProperty().set(true);
+        
+        TabPaneFXID.getSelectionModel().select(PistasTabFXID);
         
     }
 
     @FXML
+    private void selecResevas(ActionEvent event) {
+        TabPaneFXID.getSelectionModel().select(ReservasTabFXID);
+    }
+
+    @FXML
     private void selecDisponibilidad(ActionEvent event) {
-        ReservasTabFXID.closableProperty().set(true);
+        TabPaneFXID.getSelectionModel().select(DisponibilidadTabFXID);
+        
     }
     
     public void initMember(Member men,Boolean registered) {

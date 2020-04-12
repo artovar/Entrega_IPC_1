@@ -45,7 +45,7 @@
                </font></Button>
          </children>
       </VBox>
-      <TabPane layoutX="190.0" prefHeight="823.0" prefWidth="876.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="TabPaneFXID" layoutX="190.0" prefHeight="823.0" prefWidth="876.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="PistasTabFXID" text="PISTAS">
             <content>
