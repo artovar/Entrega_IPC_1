@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import DBAcess.ClubDBAccess;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Court;
 import model.Member;
 
 /**
@@ -60,6 +62,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button pista4;
     
+    private Member member;
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -86,7 +89,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     public void initMember(Member men,Boolean registered) {
-        
+        member = men;
         username = men.getLogin();
         usernameLabelFXID.setText(username);
         
@@ -107,42 +110,55 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void reservar(ActionEvent event) throws Exception {
-        
+        ClubDBAccess clubDBAcess;
+        clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
+        Court pista;
         if(event.getSource().equals(pista1)){
-            
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
+            pista = clubDBAcess.getCourt("pista 1");
+            FXMLLoader reserva = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
+            Parent root = (Parent) reserva.load();
+            reservasController cont = reserva.<reservasController>getController();
+            cont.getData(username, pista, member);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
-            stage.setScene(new Scene(root1));  
+            stage.setScene(new Scene(root));  
             stage.show();
         }
         if(event.getSource().equals(pista2)){
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
+            pista = clubDBAcess.getCourt("pista 2");
+            FXMLLoader reserva = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
+            Parent root = (Parent) reserva.load();
+            reservasController cont = reserva.<reservasController>getController();
+            cont.getData(username, pista, member);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
-            stage.setScene(new Scene(root1));  
+            stage.setScene(new Scene(root));  
             stage.show();
         }
         if(event.getSource().equals(pista3)){
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
+            pista = clubDBAcess.getCourt("pista 3");
+            FXMLLoader reserva = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
+            Parent root = (Parent) reserva.load();
+            reservasController cont = reserva.<reservasController>getController();
+            cont.getData(username, pista, member);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
-            stage.setScene(new Scene(root1));  
+            stage.setScene(new Scene(root));  
             stage.show();
         }
         if(event.getSource().equals(pista4)){
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
+            pista = clubDBAcess.getCourt("pista 4");
+            FXMLLoader reserva = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
+            Parent root = (Parent) reserva.load();
+            reservasController cont = reserva.<reservasController>getController();
+            cont.getData(username, pista, member);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
-            stage.setScene(new Scene(root1));  
+            stage.setScene(new Scene(root));  
             stage.show();
         }
     }
