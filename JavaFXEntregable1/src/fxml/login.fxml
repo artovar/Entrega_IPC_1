@@ -38,6 +38,16 @@
             <Insets left="20.0" right="20.0" top="40.0" />
          </GridPane.margin>
       </TextField>
+      <PasswordField fx:id="passText" prefHeight="32.0" prefWidth="150.0" promptText="password" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="30.0" left="20.0" right="20.0" />
+         </GridPane.margin>
+      </PasswordField>
+      <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="169.0" text="Remember me" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="20.0" />
+         </GridPane.margin>
+      </CheckBox>
       <Button fx:id="logInButton" mnemonicParsing="false" onAction="#entrarMain" prefHeight="40.0" prefWidth="166.0" text="Entrar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets top="20.0" />
@@ -53,15 +63,5 @@
          <GridPane.margin>
             <Insets bottom="25.0" />
          </GridPane.margin></Label>
-      <PasswordField fx:id="passText" prefHeight="32.0" prefWidth="150.0" promptText="password" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets bottom="30.0" left="20.0" right="20.0" />
-         </GridPane.margin>
-      </PasswordField>
-      <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="169.0" text="Remember me" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-         <GridPane.margin>
-            <Insets bottom="10.0" left="20.0" />
-         </GridPane.margin>
-      </CheckBox>
    </children>
 </GridPane>
