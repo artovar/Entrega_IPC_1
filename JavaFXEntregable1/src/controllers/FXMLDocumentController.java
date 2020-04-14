@@ -125,7 +125,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private Button actualizarButtonFXID;
-     
+    private  ClubDBAccess clubDBAcess;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -187,7 +187,63 @@ public class FXMLDocumentController implements Initializable {
         pista3Table.setItems(FXCollections.observableArrayList(clubDBAcess.getCourtBookings("3", LocalDate.now())));
         pista4table.setItems(FXCollections.observableArrayList(clubDBAcess.getCourtBookings("4", LocalDate.now())));
         */
-       
+        clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
+
+        ArrayList<Booking> pista1 = clubDBAcess.getCourtBookings("Pista 1", LocalDate.now()); //Lista reservas Pista 1
+        ArrayList<Booking> disponibilidadPista1 = new ArrayList<>(); //Lista a mostrar con huecos
+
+        ArrayList<Booking> pista2 = clubDBAcess.getCourtBookings("Pista 2", LocalDate.now()); //Lista reservas Pista 2
+        ArrayList<Booking> disponibilidadPista2 = new ArrayList<>(); //Lista a mostrar con huecos
+        
+        ArrayList<Booking> pista3 = clubDBAcess.getCourtBookings("Pista 3", LocalDate.now()); //Lista reservas Pista 3
+        ArrayList<Booking> disponibilidadPista3 = new ArrayList<>(); //Lista a mostrar con huecos
+        
+        ArrayList<Booking> pista4 = clubDBAcess.getCourtBookings("Pista 4", LocalDate.now()); //Lista reservas Pista 4
+        ArrayList<Booking> disponibilidadPista4 = new ArrayList<>(); //Lista a mostrar con huecos
+        
+        int auxHour = 21;
+        int auxMin = 0;
+        Member disp = new Member(null,null,null,"DISPONIBLE",null,null,null,null);
+        
+        for (int i =0; i <=8;i++) {
+            if(i<pista1.size()){
+                if(auxHour != pista1.get(i).getFromTime().getHour() || auxMin != pista1.get(i).getFromTime().getHour()) {
+                    disponibilidadPista1.add(new Booking(null,null,null,false,null,disp));
+                } else{ disponibilidadPista1.add(pista1.get(i));    }
+            } else{disponibilidadPista1.add(new Booking(null,null,null,false,null,disp));}
+            
+            if(i<pista2.size()){
+
+                if(auxHour != pista2.get(i).getFromTime().getHour() || auxMin != pista2.get(i).getFromTime().getHour()) {
+                    disponibilidadPista2.add(new Booking(null,null,null,false,null,disp));
+                }else{  disponibilidadPista2.add(pista2.get(i));     }
+            } else{disponibilidadPista2.add(new Booking(null,null,null,false,null,disp));}
+                
+            if(i<pista3.size()){
+                if(auxHour != pista3.get(i).getFromTime().getHour() || auxMin != pista3.get(i).getFromTime().getHour()) {
+                    disponibilidadPista3.add(new Booking(null,null,null,false,null,disp));
+                }else{  disponibilidadPista3.add(pista2.get(i));    }
+            } else{disponibilidadPista3.add(new Booking(null,null,null,false,null,disp));}
+
+            if(i<pista4.size()){
+                if(auxHour != pista4.get(i).getFromTime().getHour() || auxMin != pista4.get(i).getFromTime().getHour()) {
+                    disponibilidadPista4.add(new Booking(null,null,null,false,null,disp));
+                }else{  disponibilidadPista4.add(pista4.get(i));    }
+            } else{disponibilidadPista4.add(new Booking(null,null,null,false,null,disp));}
+ 
+            if((i+1) % 2 == 0) {    auxHour -= 2;auxMin =0; }
+            else if((i+1)%2==1) {   auxHour -=1 ; auxMin = 30;  } 
+        }
+        
+        pista1ColumFXID.setCellValueFactory(cellData1 -> new SimpleStringProperty(cellData1.getValue().getMember().getLogin()));
+        pista2ColumFXID.setCellValueFactory(cellData2 -> new SimpleStringProperty(cellData2.getValue().getMember().getLogin()));
+        pista3ColumFXID.setCellValueFactory(cellData3 -> new SimpleStringProperty(cellData3.getValue().getMember().getLogin()));
+        pista4ColumFXID.setCellValueFactory(cellData4 -> new SimpleStringProperty(cellData4.getValue().getMember().getLogin()));
+
+        pista1Table.setItems(FXCollections.observableArrayList(disponibilidadPista1));
+        pista2Table.setItems(FXCollections.observableArrayList(disponibilidadPista2));
+        pista3Table.setItems(FXCollections.observableArrayList(disponibilidadPista3));
+        pista4table.setItems(FXCollections.observableArrayList(disponibilidadPista4));
         
 
     }   
@@ -345,7 +401,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void pagarReserva(ActionEvent event) throws Exception{
         
-        ClubDBAccess clubDBAcess;
+        
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
         Booking b = ListViewReservasFXID.getSelectionModel().getSelectedItem();
         if(b != null){
@@ -383,19 +439,19 @@ public class FXMLDocumentController implements Initializable {
             if(result.isPresent() && result.equals(ButtonType.OK)){System.out.println("ok");}
             else{System.out.println("cancel");}
         }
-
-    
-    private ArrayList<Booking> ordenarReservas(ArrayList<Booking> desordenado) {
-        
-        
-    
-    
-    
-    
-    
-    
-    
     }
+    
+    /*private ArrayList<Booking> ordenarReservas(ArrayList<Booking> desordenado) {
+        
+        
+    
+    
+    
+    
+    
+    
+    
+    }*/
     
     
     
@@ -407,7 +463,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void actualizarDisponiblidad(ActionEvent event) {
         
-        ClubDBAccess clubDBAcess;
+       
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
 
         ArrayList<Booking> pista1 = clubDBAcess.getCourtBookings("Pista 1", LocalDate.now()); //Lista reservas Pista 1
