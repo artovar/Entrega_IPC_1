@@ -31,22 +31,20 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-<<<<<<< HEAD
 
 
-=======
->>>>>>> f7d9e8d5133c90e3b905bacd9785232ac9ea4d93
+
+
 import javafx.util.converter.LocalTimeStringConverter;
 
 
 import model.Court;
 
 import model.Booking;
-<<<<<<< HEAD
 
 
-=======
->>>>>>> f7d9e8d5133c90e3b905bacd9785232ac9ea4d93
+
+
 import model.Member;
 
 /**
@@ -110,15 +108,14 @@ public class FXMLDocumentController implements Initializable {
     private TableView<Booking> pista3Table;
     @FXML
     private TableView<Booking> pista4table;
-<<<<<<< HEAD
+
     @FXML
     private Button eliminarButton;
 
     @FXML
     private void eliminarReserva(ActionEvent event) {
     }
-=======
->>>>>>> f7d9e8d5133c90e3b905bacd9785232ac9ea4d93
+
     
     
     
@@ -155,6 +152,7 @@ public class FXMLDocumentController implements Initializable {
         ListViewReservasFXID.setItems(datosReservas);
 
         //GESTION TABLA DISPONIBILIDAD
+
         
         /*
         ObservableList<Booking> pista1 = FXCollections.observableArrayList(clubDBAcess.getCourtBookings(courts.get(0).getName(), LocalDate.now()));
@@ -178,6 +176,31 @@ public class FXMLDocumentController implements Initializable {
         pista3ColumFXID.setCellValueFactory(cellData3 -> new SimpleStringProperty(cellData3.getValue().getMember().getLogin()));
         pista4ColumFXID.setCellValueFactory(cellData4 -> new SimpleStringProperty(cellData4.getValue().getMember().getLogin()));
         
+
+        
+        /*
+        ObservableList<Booking> pista1 = FXCollections.observableArrayList(clubDBAcess.getCourtBookings(courts.get(0).getName(), LocalDate.now()));
+        
+        int auxHour = 9;
+        int auxMin = 0;
+        Member disp = new Member(null,null,null,"Disponible",null,null,null,null);
+        for (int i =0; i <8;i++) {
+            
+            if(auxHour != pista1.get(i).getFromTime().getHour() || auxMin != pista1.get(i).getFromTime().getHour() ) {
+                pista1.set(i, new Booking(null, null, null, false, courts.get(0), disp));
+            }
+                
+             
+        }
+        
+         
+        
+        pista1ColumFXID.setCellValueFactory(cellData1 -> new SimpleStringProperty(cellData1.getValue().getMember().getLogin()));
+        pista2ColumFXID.setCellValueFactory(cellData2 -> new SimpleStringProperty(cellData2.getValue().getMember().getLogin()));
+        pista3ColumFXID.setCellValueFactory(cellData3 -> new SimpleStringProperty(cellData3.getValue().getMember().getLogin()));
+        pista4ColumFXID.setCellValueFactory(cellData4 -> new SimpleStringProperty(cellData4.getValue().getMember().getLogin()));
+        
+
         pista1Table.setItems(FXCollections.observableArrayList(clubDBAcess.getCourtBookings("1", LocalDate.now())));
         pista2Table.setItems(FXCollections.observableArrayList(clubDBAcess.getCourtBookings("2", LocalDate.now())));
         pista3Table.setItems(FXCollections.observableArrayList(clubDBAcess.getCourtBookings("3", LocalDate.now())));
@@ -204,28 +227,28 @@ public class FXMLDocumentController implements Initializable {
     }
     
     public void initMember(Member men,Boolean registered) {
-<<<<<<< HEAD
 
+
+
+        member = men;
+
+
+        member = men;
 
         member = men;
 
 
         member = men;
 
-=======
-        member = men;
->>>>>>> f7d9e8d5133c90e3b905bacd9785232ac9ea4d93
         
         user = men;
         
         
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> f7d9e8d5133c90e3b905bacd9785232ac9ea4d93
+
         username = men.getLogin();
         usernameLabelFXID.setText(username);
         
