@@ -113,14 +113,13 @@ public class reservasController implements Initializable {
         int j = 0;
         while(j < efectuadasDia.size()){
           int aux =  (conversorMinutos(efectuadasDia.get(j).getFromTime()) -9*60)/90;
-          System.out.println(aux);
           reservas.remove(aux);
           reservas.add(aux, efectuadasDia.get(j));
           j++;
         }
         ObservableList datos = FXCollections.observableArrayList(reservas);
         listaPista.setItems(datos);
-            
+        System.out.print(mem);
         
     }
 
@@ -142,9 +141,10 @@ public class reservasController implements Initializable {
             System.out.println("CANCEL");
             }
         }else{
+            
             newBooking.setBookingDate(LocalDateTime.now());
             newBooking.setMember(mem);
-            if (mem.getCreditCard() != ""){newBooking.setPaid(Boolean.TRUE);}
+            if (!mem.getCreditCard().equals("") ){newBooking.setPaid(Boolean.TRUE);}
             clubDBAcess.getBookings().add(newBooking);
             clubDBAcess.saveDB();
             

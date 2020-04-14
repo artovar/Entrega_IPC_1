@@ -167,10 +167,10 @@ public class RegisterController implements Initializable {
         if(loginText.getText().isEmpty() || loginText.getText().contains(" ")){
             wrong += " Login ";
         }
-        if(!((creditText.getText().length()) == 12)){
+        if(!((creditText.getText().length()) == 12) && !((creditText.getText().length()) == 0) ){
             wrong += " Tarjeta crédito ";
         }
-        if(!((svcText.getText().length()) == 3)){
+        if(!((svcText.getText().length()) == 3) && !((svcText.getText().length()) == 0) ){
             wrong += " SVC ";
         }
         if(passText.getText().isEmpty() || !containsNumber(passText) || ((passText.getText().length()) < 6)){

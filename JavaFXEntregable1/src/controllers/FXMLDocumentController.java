@@ -10,17 +10,21 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -112,30 +116,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button eliminarButton;
 
-    @FXML
-    private void eliminarReserva(ActionEvent event) {
-    }
-
-    
-    
-    
-    
-    
-    
-    //Clase para el listado de reservas del usuario
-    class UserBookings extends ListCell<Booking> {
-        
-        @Override
-        protected void updateItem(Booking item, boolean empty) {
-            
-            super.updateItem(item, empty);
-            if(item == null || empty) setText(null);
-            else setText(item.getBookingDate() + " | " + item.getMadeForDay()+
-                        " | " + item.getFromTime() + " | " + item.getPaid() + " | " + item.getCourt());
-        }
-    } 
-    
-    
     private Member member;
      
     @Override
@@ -146,10 +126,7 @@ public class FXMLDocumentController implements Initializable {
         
         ArrayList<Court> courts = clubDBAcess.getCourts();
         
-        //LISTADO DE RESERVAS DEL USUARIO
-        datosReservas = FXCollections.observableArrayList(clubDBAcess.getUserBookings(username));
-        ListViewReservasFXID.setCellFactory(c -> new UserBookings());
-        ListViewReservasFXID.setItems(datosReservas);
+        
 
         //GESTION TABLA DISPONIBILIDAD
 
@@ -206,7 +183,62 @@ public class FXMLDocumentController implements Initializable {
         pista3Table.setItems(FXCollections.observableArrayList(clubDBAcess.getCourtBookings("3", LocalDate.now())));
         pista4table.setItems(FXCollections.observableArrayList(clubDBAcess.getCourtBookings("4", LocalDate.now())));
         */
-    }    
+    }   
+    
+    @FXML
+    private void eliminarReserva(ActionEvent event) {
+        ClubDBAccess clubDBAcess;
+        clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
+        Booking newBooking = ListViewReservasFXID.getSelectionModel().getSelectedItem();
+        if(newBooking.isOlderForDay(LocalDate.now())){
+            clubDBAcess.getBookings().remove(newBooking);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Reserva eliminada");
+                alert.setHeaderText("La reserva seleccionada ha sido eliminada");
+            
+           
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK){
+                TabPaneFXID.getSelectionModel().select(PistasTabFXID);
+                clubDBAcess.saveDB();
+                } else {
+                TabPaneFXID.getSelectionModel().select(PistasTabFXID);
+                clubDBAcess.saveDB();
+                }
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Imposible eliminar");
+            alert.setHeaderText("La reserva seleccionada no se puede eliminar");
+            alert.setContentText("No puedes eliminar esta reserva, pues quedan menos de 24 horas");
+            
+           
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK){
+            System.out.println("OK");
+            } else {
+            System.out.println("CANCEL");
+            }   
+        }
+    }
+
+    @FXML
+    private void mostrarReservas(Event event) {
+        ClubDBAccess clubDBAcess;
+        clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
+        ArrayList<Booking> reservasUser = clubDBAcess.getUserBookings(username);
+        for(int i = 0; i < reservasUser.size() ; i++){
+            if(reservasUser.get(i).getMadeForDay().isBefore(LocalDate.now())){
+                clubDBAcess.getBookings().remove(reservasUser.get(i));
+                reservasUser.remove(i);
+            }
+        }
+        //LISTADO DE RESERVAS DEL USUARIO
+        datosReservas = FXCollections.observableArrayList(reservasUser);
+        ListViewReservasFXID.setCellFactory(c -> new UserBookings());
+        ListViewReservasFXID.setItems(datosReservas);
+        clubDBAcess.saveDB();
+    }
 
     @FXML
     private void selecPistas(ActionEvent event) {
@@ -227,28 +259,8 @@ public class FXMLDocumentController implements Initializable {
     }
     
     public void initMember(Member men,Boolean registered) {
-
-
-
-        member = men;
-
-
-        member = men;
-
-        member = men;
-
-
-        member = men;
-
-        
+   
         user = men;
-        
-        
-
-
-
-
-
         username = men.getLogin();
         usernameLabelFXID.setText(username);
         
@@ -279,7 +291,7 @@ public class FXMLDocumentController implements Initializable {
             FXMLLoader reserva = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
             Parent root = (Parent) reserva.load();
             reservasController cont = reserva.<reservasController>getController();
-            cont.getData(username, pista, member);
+            cont.getData(username, pista, user);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
@@ -291,7 +303,7 @@ public class FXMLDocumentController implements Initializable {
             FXMLLoader reserva = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
             Parent root = (Parent) reserva.load();
             reservasController cont = reserva.<reservasController>getController();
-            cont.getData(username, pista, member);
+            cont.getData(username, pista, user);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
@@ -303,7 +315,7 @@ public class FXMLDocumentController implements Initializable {
             FXMLLoader reserva = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
             Parent root = (Parent) reserva.load();
             reservasController cont = reserva.<reservasController>getController();
-            cont.getData(username, pista, member);
+            cont.getData(username, pista, user);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
@@ -315,7 +327,7 @@ public class FXMLDocumentController implements Initializable {
             FXMLLoader reserva = new FXMLLoader(getClass().getResource("/fxml/reservas.fxml"));
             Parent root = (Parent) reserva.load();
             reservasController cont = reserva.<reservasController>getController();
-            cont.getData(username, pista, member);
+            cont.getData(username, pista, user);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
@@ -325,3 +337,18 @@ public class FXMLDocumentController implements Initializable {
     }
     
 }
+//Clase para el listado de reservas del usuario
+    class UserBookings extends ListCell<Booking> {
+        
+        @Override
+        protected void updateItem(Booking item, boolean empty) {
+            
+            
+            super.updateItem(item, empty);
+            if(item == null || empty) setText(null);
+            else setText( item.getMadeForDay()+
+                        " | " + item.getFromTime() + " | pagado: " + item.getPaid() + " | " + item.getCourt().getName());
+        }
+        
+        
+    } 

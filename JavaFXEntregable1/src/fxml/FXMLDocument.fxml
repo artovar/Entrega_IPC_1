@@ -71,7 +71,7 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="ReservasTabFXID" text="MIS RESERVAS">
+          <Tab fx:id="ReservasTabFXID" onSelectionChanged="#mostrarReservas" text="MIS RESERVAS">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
