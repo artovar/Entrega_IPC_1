@@ -34,6 +34,7 @@ public class JavaFXEntregable1 extends Application {
         stage.setScene(scene);
         stage.show();
         
+
         stage.setOnCloseRequest((event) -> {
            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -52,6 +53,9 @@ public class JavaFXEntregable1 extends Application {
                 reservasUser.remove(i);
             }
         }
+
+
+
     }
 
     /**
