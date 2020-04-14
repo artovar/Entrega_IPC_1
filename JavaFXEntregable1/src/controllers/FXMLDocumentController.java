@@ -7,8 +7,11 @@ package controllers;
 
 import DBAcess.ClubDBAccess;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,14 +27,26 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 <<<<<<< HEAD
-import model.Court;
+
+
 =======
+>>>>>>> f7d9e8d5133c90e3b905bacd9785232ac9ea4d93
+import javafx.util.converter.LocalTimeStringConverter;
+
+
+import model.Court;
+
 import model.Booking;
->>>>>>> 10a21cc0ccce84a3d6295b81b00d31c9df6da061
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> f7d9e8d5133c90e3b905bacd9785232ac9ea4d93
 import model.Member;
 
 /**
@@ -77,6 +92,38 @@ public class FXMLDocumentController implements Initializable {
     
     private Member user;
     private ObservableList<Booking> datosReservas = null;
+    @FXML
+    private TableColumn<?, ?> horaColumFXID;
+    @FXML
+    private TableColumn<Booking, String> pista1ColumFXID;
+    @FXML
+    private TableColumn<Booking, String> pista2ColumFXID;
+    @FXML
+    private TableColumn<Booking, String> pista3ColumFXID;
+    @FXML
+    private TableColumn<Booking, String> pista4ColumFXID;
+    @FXML
+    private TableView<Booking> pista1Table;
+    @FXML
+    private TableView<Booking> pista2Table;
+    @FXML
+    private TableView<Booking> pista3Table;
+    @FXML
+    private TableView<Booking> pista4table;
+<<<<<<< HEAD
+    @FXML
+    private Button eliminarButton;
+
+    @FXML
+    private void eliminarReserva(ActionEvent event) {
+    }
+=======
+>>>>>>> f7d9e8d5133c90e3b905bacd9785232ac9ea4d93
+    
+    
+    
+    
+    
     
     //Clase para el listado de reservas del usuario
     class UserBookings extends ListCell<Booking> {
@@ -99,13 +146,43 @@ public class FXMLDocumentController implements Initializable {
         // TODO
         ClubDBAccess clubDBAcess;
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
+        
+        ArrayList<Court> courts = clubDBAcess.getCourts();
+        
         //LISTADO DE RESERVAS DEL USUARIO
         datosReservas = FXCollections.observableArrayList(clubDBAcess.getUserBookings(username));
         ListViewReservasFXID.setCellFactory(c -> new UserBookings());
         ListViewReservasFXID.setItems(datosReservas);
 
+        //GESTION TABLA DISPONIBILIDAD
         
+        /*
+        ObservableList<Booking> pista1 = FXCollections.observableArrayList(clubDBAcess.getCourtBookings(courts.get(0).getName(), LocalDate.now()));
         
+        int auxHour = 9;
+        int auxMin = 0;
+        Member disp = new Member(null,null,null,"Disponible",null,null,null,null);
+        for (int i =0; i <8;i++) {
+            
+            if(auxHour != pista1.get(i).getFromTime().getHour() || auxMin != pista1.get(i).getFromTime().getHour() ) {
+                pista1.set(i, new Booking(null, null, null, false, courts.get(0), disp));
+            }
+                
+             
+        }
+        
+         
+        
+        pista1ColumFXID.setCellValueFactory(cellData1 -> new SimpleStringProperty(cellData1.getValue().getMember().getLogin()));
+        pista2ColumFXID.setCellValueFactory(cellData2 -> new SimpleStringProperty(cellData2.getValue().getMember().getLogin()));
+        pista3ColumFXID.setCellValueFactory(cellData3 -> new SimpleStringProperty(cellData3.getValue().getMember().getLogin()));
+        pista4ColumFXID.setCellValueFactory(cellData4 -> new SimpleStringProperty(cellData4.getValue().getMember().getLogin()));
+        
+        pista1Table.setItems(FXCollections.observableArrayList(clubDBAcess.getCourtBookings("1", LocalDate.now())));
+        pista2Table.setItems(FXCollections.observableArrayList(clubDBAcess.getCourtBookings("2", LocalDate.now())));
+        pista3Table.setItems(FXCollections.observableArrayList(clubDBAcess.getCourtBookings("3", LocalDate.now())));
+        pista4table.setItems(FXCollections.observableArrayList(clubDBAcess.getCourtBookings("4", LocalDate.now())));
+        */
     }    
 
     @FXML
@@ -128,13 +205,27 @@ public class FXMLDocumentController implements Initializable {
     
     public void initMember(Member men,Boolean registered) {
 <<<<<<< HEAD
+
+
         member = men;
+
+
+        member = men;
+
 =======
+        member = men;
+>>>>>>> f7d9e8d5133c90e3b905bacd9785232ac9ea4d93
         
         user = men;
         
         
->>>>>>> 10a21cc0ccce84a3d6295b81b00d31c9df6da061
+<<<<<<< HEAD
+
+
+
+
+=======
+>>>>>>> f7d9e8d5133c90e3b905bacd9785232ac9ea4d93
         username = men.getLogin();
         usernameLabelFXID.setText(username);
         
