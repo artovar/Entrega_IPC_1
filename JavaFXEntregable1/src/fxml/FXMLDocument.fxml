@@ -77,7 +77,8 @@
                      <children>
                         <ListView fx:id="ListViewReservasFXID" layoutX="113.0" layoutY="64.0" prefHeight="640.0" prefWidth="636.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="127.0" AnchorPane.topAnchor="64.0" />
                         <Label layoutX="360.0" layoutY="29.0" text="TUS PROXIMAS RESERVAS" />
-                        <Button fx:id="eliminarButton" layoutX="366.0" layoutY="730.0" mnemonicParsing="false" onAction="#eliminarReserva" prefHeight="44.0" prefWidth="130.0" text="Eliminar reserva" />
+                        <Button fx:id="eliminarButton" layoutX="230.0" layoutY="722.0" mnemonicParsing="false" onAction="#eliminarReserva" prefHeight="44.0" prefWidth="130.0" text="Eliminar reserva" />
+                        <Button fx:id="pagarButton" layoutX="501.0" layoutY="722.0" mnemonicParsing="false" onAction="#pagarReserva" prefHeight="44.0" prefWidth="130.0" text="Pagar Reserva" />
                      </children></AnchorPane>
             </content>
           </Tab>

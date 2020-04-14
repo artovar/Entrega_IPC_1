@@ -27,6 +27,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -78,6 +79,17 @@ public class reservasController implements Initializable {
 					}
 			
 				});
+       
+       datePicker.setDayCellFactory((DatePicker picker) -> {
+            return new DateCell() {
+                @Override
+                    public void updateItem(LocalDate date, boolean empty) {
+                    super.updateItem(date, empty);
+                    LocalDate today = LocalDate.now();
+                    setDisable(empty || date.compareTo(today) < 0 );
+                }
+            };
+       });
         
     }    
     public void getData (String username, Court pista, Member member){
@@ -144,7 +156,8 @@ public class reservasController implements Initializable {
             
             newBooking.setBookingDate(LocalDateTime.now());
             newBooking.setMember(mem);
-            if (!mem.getCreditCard().equals("") ){newBooking.setPaid(Boolean.TRUE);}
+            if (mem.getCreditCard().equals("") || mem.getSvc().equals("")){newBooking.setPaid(Boolean.FALSE);}
+            else{ newBooking.setPaid(Boolean.TRUE);}
             clubDBAcess.getBookings().add(newBooking);
             clubDBAcess.saveDB();
             

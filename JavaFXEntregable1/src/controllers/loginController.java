@@ -67,7 +67,7 @@ public class loginController implements Initializable {
             FXMLLoader main = new FXMLLoader(getClass().getResource("/fxml/FXMLDocument.fxml"));
             Parent root = (Parent) main.load();
             FXMLDocumentController mainController = main.<FXMLDocumentController>getController();
-            mainController.initMember(mem,true);
+            mainController.initMember(mem, Boolean.TRUE);
             
             //tomamos los valores del dispositivo para ajustar la nueva ventana a una proporcion concreta
             GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -108,10 +108,25 @@ public class loginController implements Initializable {
     }
 
     @FXML
-    private void entrarReservasSinRegistro(MouseEvent event) {
+    private void entrarReservasSinRegistro(MouseEvent event) throws Exception{
+        FXMLLoader main = new FXMLLoader(getClass().getResource("/fxml/FXMLDocument.fxml"));
+        Parent root2 = (Parent) main.load();
+        FXMLDocumentController mainController = main.<FXMLDocumentController>getController();
+        mainController.initMember(null, Boolean.FALSE);
         
-        
-        
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        int width = gd.getDisplayMode().getWidth();
+        int height = gd.getDisplayMode().getHeight();
+           
+        Scene mainScene = new Scene(root2,width*0.75,height*0.75);
+        Stage mainStage = new Stage();
+        mainStage.setScene(mainScene);
+        mainStage.setTitle("Paddle Club Premium");
+        mainStage.initModality(Modality.APPLICATION_MODAL);
+            
+        Stage loginStage = (Stage) this.logInButton.getScene().getWindow();
+        loginStage.close();
+        mainStage.show();
     }
     
 }

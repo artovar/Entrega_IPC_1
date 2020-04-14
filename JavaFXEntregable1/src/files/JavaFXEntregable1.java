@@ -6,12 +6,15 @@
 package files;
 
 import DBAcess.ClubDBAccess;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import model.Booking;
 
 /**
  *
@@ -22,6 +25,8 @@ public class JavaFXEntregable1 extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        
+        clubDBAccess = ClubDBAccess.getSingletonClubDBAccess();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
         
         Scene scene = new Scene(root);
@@ -40,7 +45,13 @@ public class JavaFXEntregable1 extends Application {
             
         });
         
-        
+        ArrayList<Booking> reservasUser = clubDBAccess.getBookings();
+        for(int i = 0; i < reservasUser.size() ; i++){
+            if(reservasUser.get(i).getMadeForDay().isBefore(LocalDate.now())){
+                clubDBAccess.getBookings().remove(reservasUser.get(i));
+                reservasUser.remove(i);
+            }
+        }
     }
 
     /**

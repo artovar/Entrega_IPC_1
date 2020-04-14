@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -117,7 +118,9 @@ public class FXMLDocumentController implements Initializable {
     private Button eliminarButton;
 
     private Member member;
-     
+    private Boolean registrado;
+    @FXML
+    private Button pagarButton;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -183,6 +186,8 @@ public class FXMLDocumentController implements Initializable {
         pista3Table.setItems(FXCollections.observableArrayList(clubDBAcess.getCourtBookings("3", LocalDate.now())));
         pista4table.setItems(FXCollections.observableArrayList(clubDBAcess.getCourtBookings("4", LocalDate.now())));
         */
+       
+        
     }   
     
     @FXML
@@ -226,14 +231,9 @@ public class FXMLDocumentController implements Initializable {
     private void mostrarReservas(Event event) {
         ClubDBAccess clubDBAcess;
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
-        ArrayList<Booking> reservasUser = clubDBAcess.getUserBookings(username);
-        for(int i = 0; i < reservasUser.size() ; i++){
-            if(reservasUser.get(i).getMadeForDay().isBefore(LocalDate.now())){
-                clubDBAcess.getBookings().remove(reservasUser.get(i));
-                reservasUser.remove(i);
-            }
-        }
+        
         //LISTADO DE RESERVAS DEL USUARIO
+        ArrayList<Booking> reservasUser = clubDBAcess.getUserBookings(username);
         datosReservas = FXCollections.observableArrayList(reservasUser);
         ListViewReservasFXID.setCellFactory(c -> new UserBookings());
         ListViewReservasFXID.setItems(datosReservas);
@@ -259,27 +259,30 @@ public class FXMLDocumentController implements Initializable {
     }
     
     public void initMember(Member men,Boolean registered) {
-   
-        user = men;
-        username = men.getLogin();
-        usernameLabelFXID.setText(username);
-        
-        
-        
-        if(registered) {
-        
-        //Pues aqui habilitaresmos los tabs de mis reservas y de hacer reservas
-        
-        
+        if(men != null){
+            user = men;
+            member = men;
+            username = men.getLogin();
+            usernameLabelFXID.setText(username);
+            if(!user.getCreditCard().equals("") && !user.getSvc().equals("")){
+                pagarButton.setDisable(true);
+            }
+        }else{usernameLabelFXID.setText("Invitado"); }
+        registrado = registered;
+        System.out.print(registrado);
+        if(!registrado){
+            usernameLabelFXID.setText("Invitado");
+            TabPaneFXID.getSelectionModel().select(DisponibilidadTabFXID);
+            PistasButtonFXID.setDisable(true);
+            PistasButtonFXID.setVisible(false); 
+            MisReservasButtonFXID.setVisible(false);
+            MisReservasButtonFXID.setDisable(true);
+            PistasTabFXID.setDisable(true);
+            ReservasTabFXID.setDisable(true);
         }
-        else{
-        //Aqui dejamos deshabilitadas las opciones puesto que entra como invitado
-        usernameLabelFXID.setText("Invitado");
-        }
-        
-        
         
     }
+  
 
     @FXML
     private void reservar(ActionEvent event) throws Exception {
@@ -333,6 +336,49 @@ public class FXMLDocumentController implements Initializable {
             stage.setTitle("Registro");
             stage.setScene(new Scene(root));  
             stage.show();
+        }
+    }
+
+    @FXML
+    private void pagarReserva(ActionEvent event) throws Exception{
+        
+        ClubDBAccess clubDBAcess;
+        clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
+        Booking b = ListViewReservasFXID.getSelectionModel().getSelectedItem();
+        if(b != null){
+            if(!b.getPaid()){
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/pagar.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                PagarController pagarController = fxmlLoader.<PagarController>getController();
+                pagarController.obtainData(member, b);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setTitle("Pago");
+                stage.setScene(new Scene(root1));  
+                stage.showAndWait();
+                
+                ArrayList<Booking> reservasUser = clubDBAcess.getUserBookings(username);
+                datosReservas = FXCollections.observableArrayList(reservasUser);
+                ListViewReservasFXID.setCellFactory(c -> new UserBookings());
+                ListViewReservasFXID.setItems(datosReservas);
+                clubDBAcess.saveDB();
+            }else{
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Esta reserva ya esta pagada");
+                Optional<ButtonType> result = alert.showAndWait();
+                if(result.isPresent() && result.equals(ButtonType.OK)){System.out.println("ok");}
+                else{System.out.println("cancel");}
+            }
+                
+            
+        }else{
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No hay reserva seleccionada");
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.isPresent() && result.equals(ButtonType.OK)){System.out.println("ok");}
+            else{System.out.println("cancel");}
         }
     }
     
