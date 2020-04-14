@@ -29,18 +29,7 @@ public class JavaFXEntregable1 extends Application {
         stage.setScene(scene);
         stage.show();
         
-        stage.setOnCloseRequest((event) -> {
-           
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(clubDBAccess.getClubName());
-            alert.setHeaderText("Guardado de datos");
-            alert.setContentText("La aplicación guardará los datos proporcionados antes de cerrarse");
-            alert.show();
-            clubDBAccess.saveDB();
-            
-        });
-        
-        
+
     }
 
     /**

@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="823.0" prefWidth="1065.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLDocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="827.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLDocumentController">
    <children>
       <ImageView fitHeight="190.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -28,7 +28,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <VBox layoutY="228.0" prefHeight="602.0" prefWidth="190.0">
+      <VBox layoutY="228.0" prefHeight="602.0" prefWidth="205.0">
          <children>
             <Button fx:id="PistasButtonFXID" mnemonicParsing="false" onAction="#selecPistas" prefHeight="71.0" prefWidth="190.0" style="-fx-font-size: 25;" text="PISTAS" textAlignment="CENTER">
                <font>
@@ -46,11 +46,11 @@
                </font></Button>
          </children>
       </VBox>
-      <TabPane fx:id="TabPaneFXID" layoutX="190.0" prefHeight="823.0" prefWidth="876.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="TabPaneFXID" layoutX="190.0" prefHeight="823.0" prefWidth="870.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="PistasTabFXID" text="PISTAS">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="783.0" prefWidth="889.0">
                      <children>
                         <GridPane layoutX="-5.0" prefHeight="767.0" prefWidth="876.0">
                           <columnConstraints>
@@ -73,11 +73,11 @@
           </Tab>
           <Tab fx:id="ReservasTabFXID" onSelectionChanged="#mostrarReservas" text="MIS RESERVAS">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="870.0">
                      <children>
                         <ListView fx:id="ListViewReservasFXID" layoutX="113.0" layoutY="64.0" prefHeight="640.0" prefWidth="636.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="127.0" AnchorPane.topAnchor="64.0" />
                         <Label layoutX="360.0" layoutY="29.0" text="TUS PROXIMAS RESERVAS" />
-                        <Button fx:id="eliminarButton" layoutX="366.0" layoutY="730.0" mnemonicParsing="false" onAction="#eliminarReserva" prefHeight="44.0" prefWidth="130.0" text="Eliminar reserva" />
+                        <Button fx:id="eliminarButton" layoutX="367.0" layoutY="713.0" mnemonicParsing="false" onAction="#eliminarReserva" prefHeight="44.0" prefWidth="130.0" text="Eliminar reserva" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -85,7 +85,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="763.0" prefWidth="890.0">
                      <children>
-                        <HBox prefHeight="796.0" prefWidth="876.0">
+                        <HBox prefHeight="796.0" prefWidth="876.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                            <children>
                               <TableView fx:id="TableViewDisponibilidadFXID" prefHeight="794.0" prefWidth="175.0">
                                 <columns>
@@ -114,6 +114,7 @@
                               </TableView>
                            </children>
                         </HBox>
+                        <Button fx:id="actualizarButtonFXID" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#actualizarDisponiblidad" prefHeight="38.0" prefWidth="104.0" text="Actualizar" />
                      </children></AnchorPane>
             </content>
           </Tab>
