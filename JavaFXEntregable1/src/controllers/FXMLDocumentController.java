@@ -6,14 +6,12 @@
 package controllers;
 
 import DBAcess.ClubDBAccess;
-import com.sun.prism.shader.Solid_LinearGradient_PAD_Loader;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -70,7 +68,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ListView<Booking> ListViewReservasFXID;
     @FXML
-    private TableView<?> TableViewDisponibilidadFXID;
+    private TableView<String> TableViewDisponibilidadFXID;
     @FXML
     private Button pista1;
     @FXML
@@ -86,7 +84,7 @@ public class FXMLDocumentController implements Initializable {
     private Member user;
     private ObservableList<Booking> datosReservas = null;
     @FXML
-    private TableColumn<?, ?> horaColumFXID;
+    private TableColumn<String, String> horaColumFXID;
     @FXML
     private TableColumn<Booking, String> pista1ColumFXID;
     @FXML
@@ -120,50 +118,47 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
- 
-        //GESTION TABLA DISPONIBILIDAD
+        
+        
         mostrarReservas();
+        //GESTION TABLA DISPONIBILIDAD
+        ArrayList<String> horaList = new ArrayList<>();
+        horaList.add("9:00");horaList.add("10:30");
+        horaList.add("12:00");horaList.add("13:30");
+        horaList.add("15:00");horaList.add("16:30");
+        horaList.add("18:00");horaList.add("19:30");
+        horaList.add("21:00");
+        horaColumFXID.setCellValueFactory(cellData0 -> new SimpleStringProperty(cellData0.getValue()));
+        TableViewDisponibilidadFXID.setItems(FXCollections.observableArrayList(horaList));
         actualizarDisponiblidad();
-
     }
     
     private void actualizarDisponiblidad() {
-    
+        
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
-
         ArrayList<Booking> pista1 = clubDBAcess.getCourtBookings("Pista 1", LocalDate.now()); //Lista reservas Pista 1
         ArrayList<Booking> pista2 = clubDBAcess.getCourtBookings("Pista 2", LocalDate.now()); //Lista reservas Pista 2
         ArrayList<Booking> pista3 = clubDBAcess.getCourtBookings("Pista 3", LocalDate.now()); //Lista reservas Pista 3
         ArrayList<Booking> pista4 = clubDBAcess.getCourtBookings("Pista 4", LocalDate.now()); //Lista reservas Pista 4
-       
-
         Member disp = new Member(null,null,null,"DISPONIBLE",null,null,null,null);
-        
         ArrayList<Booking> disponibilidadPista1 = new ArrayList<>();
         ArrayList<Booking> disponibilidadPista2 = new ArrayList<>();
         ArrayList<Booking> disponibilidadPista3 = new ArrayList<>();
         ArrayList<Booking> disponibilidadPista4 = new ArrayList<>();
-        
-        
         for (int i=0;i<=8;i++) {
           disponibilidadPista1.add(new Booking(null,null,null,false,null,disp));
           disponibilidadPista2.add(new Booking(null,null,null,false,null,disp));
           disponibilidadPista3.add(new Booking(null,null,null,false,null,disp));
           disponibilidadPista4.add(new Booking(null,null,null,false,null,disp));
         }
-        
         disponibilidadPista1 = ordenarReservas(disponibilidadPista1, pista1);
         disponibilidadPista2 = ordenarReservas(disponibilidadPista2, pista2);
         disponibilidadPista3 = ordenarReservas(disponibilidadPista3, pista3);
         disponibilidadPista4 = ordenarReservas(disponibilidadPista4, pista4);
- 
-     
-        
         pista1ColumFXID.setCellValueFactory(cellData1 -> new SimpleStringProperty(cellData1.getValue().getMember().getLogin()));
         pista2ColumFXID.setCellValueFactory(cellData2 -> new SimpleStringProperty(cellData2.getValue().getMember().getLogin()));
         pista3ColumFXID.setCellValueFactory(cellData3 -> new SimpleStringProperty(cellData3.getValue().getMember().getLogin()));
         pista4ColumFXID.setCellValueFactory(cellData4 -> new SimpleStringProperty(cellData4.getValue().getMember().getLogin()));
-
         pista1Table.setItems(FXCollections.observableArrayList(disponibilidadPista1));
         pista2Table.setItems(FXCollections.observableArrayList(disponibilidadPista2));
         pista3Table.setItems(FXCollections.observableArrayList(disponibilidadPista3));
@@ -198,7 +193,6 @@ public class FXMLDocumentController implements Initializable {
                 alert.setTitle("Reserva eliminada");
                 alert.setHeaderText("La reserva seleccionada ha sido eliminada");
             
-           
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK){
                 TabPaneFXID.getSelectionModel().select(PistasTabFXID);
@@ -213,14 +207,11 @@ public class FXMLDocumentController implements Initializable {
             alert.setTitle("Imposible eliminar");
             alert.setHeaderText("La reserva seleccionada no se puede eliminar");
             alert.setContentText("No puedes eliminar esta reserva, pues quedan menos de 24 horas");
-            
-           
+
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK){
             System.out.println("OK");
-            } else {
-            System.out.println("CANCEL");
-            }   
+            } else {System.out.println("CANCEL");}   
         }
         mostrarReservas();
     }
@@ -232,8 +223,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void selecPistas(ActionEvent event) {
-        TabPaneFXID.getSelectionModel().select(PistasTabFXID);
-        
+        TabPaneFXID.getSelectionModel().select(PistasTabFXID); 
     }
 
     @FXML
@@ -243,8 +233,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void selecDisponibilidad(ActionEvent event) {
-        TabPaneFXID.getSelectionModel().select(DisponibilidadTabFXID);
-        
+        TabPaneFXID.getSelectionModel().select(DisponibilidadTabFXID); 
     }
     
     public void initMember(Member men,Boolean registered) {
@@ -269,10 +258,8 @@ public class FXMLDocumentController implements Initializable {
             PistasTabFXID.setDisable(true);
             ReservasTabFXID.setDisable(true);
         }
-        
     }
-  
-
+    
     @FXML
     private void reservar(ActionEvent event) throws Exception {
         ClubDBAccess clubDBAcess;
@@ -328,7 +315,6 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-
     @FXML
     private void pagarReserva(ActionEvent event) throws Exception{
         
@@ -378,40 +364,28 @@ public class FXMLDocumentController implements Initializable {
         return aux;
     }
     
-    
     private ArrayList<Booking> ordenarReservas(ArrayList<Booking> ordenado, ArrayList<Booking> desordenado) {
         int aux;
         while(!desordenado.isEmpty()){
             aux = (conversorMinutos(desordenado.get(0).getFromTime())-9*60)/90;
-            System.out.println("");
-            System.out.println(aux);
             ordenado.set(aux, desordenado.get(0));
             desordenado.remove(0);
         }
         return ordenado;
     }
-    
 
-    
     @FXML
     private void actualizarDisponiblidad(ActionEvent event) {
-        
        actualizarDisponiblidad();
-
-    }
-    
+    } 
 }
 //Clase para el listado de reservas del usuario
-    class UserBookings extends ListCell<Booking> {
-        
+    class UserBookings extends ListCell<Booking> { 
         @Override
         protected void updateItem(Booking item, boolean empty) {
-
             super.updateItem(item, empty);
             if(item == null || empty) setText(null);
             else setText( item.getMadeForDay()+
                         " | " + item.getFromTime() + " | pagado: " + item.getPaid() + " | " + item.getCourt().getName());
         }
-        
-        
-    } 
+} 
