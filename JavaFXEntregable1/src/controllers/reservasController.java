@@ -117,7 +117,8 @@ public class reservasController implements Initializable {
         ArrayList<Booking> efectuadasTotal =clubDBAcess.getBookings();
         int i = 0;
         while( i < efectuadasTotal.size()){
-            if(efectuadasTotal.get(i).getMadeForDay().equals(datePicker.getValue())){
+            Booking aux = efectuadasTotal.get(i);
+            if(aux.getMadeForDay().equals(datePicker.getValue()) && aux.getCourt().getName().equals(pistaLabel.getText())){
                 efectuadasDia.add(efectuadasTotal.get(i));
             }
             i++;
