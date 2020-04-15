@@ -34,7 +34,7 @@ public class JavaFXEntregable1 extends Application {
         stage.setScene(scene);
         stage.show();
         
-
+        /*
         stage.setOnCloseRequest((event) -> {
            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -44,15 +44,15 @@ public class JavaFXEntregable1 extends Application {
             alert.show();
             clubDBAccess.saveDB();
             
-        });
-        
+        });*/
+        /*
         ArrayList<Booking> reservasUser = clubDBAccess.getBookings();
         for(int i = 0; i < reservasUser.size() ; i++){
             if(reservasUser.get(i).getMadeForDay().isBefore(LocalDate.now())){
                 clubDBAccess.getBookings().remove(reservasUser.get(i));
                 reservasUser.remove(i);
             }
-        }
+        }*/
 
 
 
