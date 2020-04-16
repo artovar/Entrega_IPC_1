@@ -10,9 +10,12 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,8 +36,12 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import model.Booking;
 import model.Court;
 import model.Member;
@@ -114,12 +121,23 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button actualizarButtonFXID;
     private  ClubDBAccess clubDBAcess;
+    @FXML
+    private AnchorPane pistasPane;
+    @FXML
+    private HBox PIstasBox;
+    @FXML
+    private AnchorPane ReservasPane;
+    @FXML
+    private VBox ReservasBox;
+    @FXML
+    private AnchorPane DispoPane;
+    @FXML
+    private VBox DispoBox;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         
-        
+                
         mostrarReservas();
         //GESTION TABLA DISPONIBILIDAD
         ArrayList<String> horaList = new ArrayList<>();
@@ -133,6 +151,7 @@ public class FXMLDocumentController implements Initializable {
         actualizarDisponiblidad();
     }
     
+    @FXML
     private void actualizarDisponiblidad() {
         
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
@@ -169,6 +188,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     
+    @FXML
     private void mostrarReservas() {
         ClubDBAccess clubDBAcess;
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
@@ -216,7 +236,6 @@ public class FXMLDocumentController implements Initializable {
         mostrarReservas();
     }
 
-    @FXML
     private void mostrarReservas(Event event) {
         mostrarReservas();
     }
@@ -233,6 +252,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void selecDisponibilidad(ActionEvent event) {
+        actualizarDisponiblidad();
         TabPaneFXID.getSelectionModel().select(DisponibilidadTabFXID); 
     }
     
@@ -374,7 +394,6 @@ public class FXMLDocumentController implements Initializable {
         return ordenado;
     }
 
-    @FXML
     private void actualizarDisponiblidad(ActionEvent event) {
        actualizarDisponiblidad();
     } 
