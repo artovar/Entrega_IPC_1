@@ -158,7 +158,7 @@ public class RegisterController implements Initializable {
         if(nameText.getText().isEmpty()){
             wrong += " Nombre ";
         }
-        if(surnameText.getText().isEmpty() || !surnameText.getText().contains(" ")){
+        if(surnameText.getText().isEmpty() ){
             wrong += " Apellidos ";
         }
         if( !((phoneText.getText().length()) == 9)){

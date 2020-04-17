@@ -31,6 +31,14 @@
                         <Font size="35.0" />
                      </font>
                   </Label>
+                  <Button fx:id="perfilButton" mnemonicParsing="false" onAction="#abrirPerfil" prefHeight="750.0" prefWidth="363.0" text="PERFIL">
+                     <graphic>
+                        <ImageView fx:id="fotoPerfil" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="PistasButtonFXID" mnemonicParsing="false" onAction="#selecPistas" prefHeight="750.0" prefWidth="363.0" style="-fx-font-size: 25;" text="PISTAS" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />

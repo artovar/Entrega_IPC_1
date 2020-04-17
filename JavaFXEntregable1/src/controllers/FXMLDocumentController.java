@@ -36,6 +36,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -133,6 +134,10 @@ public class FXMLDocumentController implements Initializable {
     private AnchorPane DispoPane;
     @FXML
     private VBox DispoBox;
+    @FXML
+    private Button perfilButton;
+    @FXML
+    private ImageView fotoPerfil;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -265,6 +270,7 @@ public class FXMLDocumentController implements Initializable {
             if(!user.getCreditCard().equals("") && !user.getSvc().equals("")){
                 pagarButton.setDisable(true);
             }
+            fotoPerfil.setImage(men.getImage());
         }else{usernameLabelFXID.setText("Invitado"); }
         registrado = registered;
         System.out.print(registrado);
@@ -277,7 +283,10 @@ public class FXMLDocumentController implements Initializable {
             MisReservasButtonFXID.setDisable(true);
             PistasTabFXID.setDisable(true);
             ReservasTabFXID.setDisable(true);
+            perfilButton.setDisable(true);
+            perfilButton.setVisible(false);
         }
+        
     }
     
     @FXML
@@ -397,6 +406,19 @@ public class FXMLDocumentController implements Initializable {
     private void actualizarDisponiblidad(ActionEvent event) {
        actualizarDisponiblidad();
     } 
+
+    @FXML
+    private void abrirPerfil(ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/perfil.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        PerfilController perfilController = fxmlLoader.<PerfilController>getController();
+        perfilController.data(member);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Perfil");
+        stage.setScene(new Scene(root1));  
+        stage.showAndWait();
+    }
 }
 //Clase para el listado de reservas del usuario
     class UserBookings extends ListCell<Booking> { 
