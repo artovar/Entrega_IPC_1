@@ -143,7 +143,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
                 
-        mostrarReservas();
+        
         //GESTION TABLA DISPONIBILIDAD
         ArrayList<String> horaList = new ArrayList<>();
         horaList.add("9:00");horaList.add("10:30");
@@ -197,6 +197,7 @@ public class FXMLDocumentController implements Initializable {
     private void mostrarReservas() {
         ClubDBAccess clubDBAcess;
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
+        borrarReservasPasadas();
         //LISTADO DE RESERVAS DEL USUARIO
         ArrayList<Booking> reservasUser = clubDBAcess.getUserBookings(username);
         datosReservas = FXCollections.observableArrayList(reservasUser);
@@ -418,6 +419,19 @@ public class FXMLDocumentController implements Initializable {
         stage.setTitle("Perfil");
         stage.setScene(new Scene(root1));  
         stage.showAndWait();
+    }
+    
+    private void borrarReservasPasadas(){
+        clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
+        int cont = 0;
+        ArrayList<Booking> aux = clubDBAcess.getUserBookings(username);
+        for(int i = 0; i < aux.size(); i++){
+            if(aux.get(i).getMadeForDay().isBefore(LocalDate.now())){
+                clubDBAcess.getBookings().remove(aux.get(i));
+                cont++;
+            }
+        }
+        if(cont != 0){clubDBAcess.saveDB();}
     }
 }
 //Clase para el listado de reservas del usuario
