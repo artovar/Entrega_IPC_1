@@ -70,11 +70,8 @@ public class loginController implements Initializable {
             mainController.initMember(mem, Boolean.TRUE);
             
             //tomamos los valores del dispositivo para ajustar la nueva ventana a una proporcion concreta
-            GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-            int width = gd.getDisplayMode().getWidth();
-            int height = gd.getDisplayMode().getHeight();
-            
-            Scene mainScene = new Scene(root,width*0.75,height*0.75);
+                       
+            Scene mainScene = new Scene(root);
             Stage mainStage = new Stage();
             mainStage.setScene(mainScene);
             mainStage.setTitle("Paddle Club Premium");

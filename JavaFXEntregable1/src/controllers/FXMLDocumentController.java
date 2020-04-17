@@ -6,16 +6,14 @@
 package controllers;
 
 import DBAcess.ClubDBAccess;
+import clases.FormattedTableCellFactory;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,6 +32,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
@@ -41,7 +40,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
+import javafx.util.Callback;
 import model.Booking;
 import model.Court;
 import model.Member;
@@ -137,6 +136,11 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        
+        
+        
+        
+        
                 
         mostrarReservas();
         //GESTION TABLA DISPONIBILIDAD
@@ -174,17 +178,34 @@ public class FXMLDocumentController implements Initializable {
         disponibilidadPista2 = ordenarReservas(disponibilidadPista2, pista2);
         disponibilidadPista3 = ordenarReservas(disponibilidadPista3, pista3);
         disponibilidadPista4 = ordenarReservas(disponibilidadPista4, pista4);
+        pista1ColumFXID.setCellFactory(new FormattedTableCellFactory());
         pista1ColumFXID.setCellValueFactory(cellData1 -> new SimpleStringProperty(cellData1.getValue().getMember().getLogin()));
+        pista1ColumFXID.setCellFactory(new FormattedTableCellFactory());
+        
+        pista2ColumFXID.setCellFactory(new FormattedTableCellFactory());
         pista2ColumFXID.setCellValueFactory(cellData2 -> new SimpleStringProperty(cellData2.getValue().getMember().getLogin()));
+        pista2ColumFXID.setCellFactory(new FormattedTableCellFactory());
+        
+        pista3ColumFXID.setCellFactory(new FormattedTableCellFactory());
         pista3ColumFXID.setCellValueFactory(cellData3 -> new SimpleStringProperty(cellData3.getValue().getMember().getLogin()));
+        pista3ColumFXID.setCellFactory(new FormattedTableCellFactory());
+        
+        pista4ColumFXID.setCellFactory(new FormattedTableCellFactory());
         pista4ColumFXID.setCellValueFactory(cellData4 -> new SimpleStringProperty(cellData4.getValue().getMember().getLogin()));
+        pista4ColumFXID.setCellFactory(new FormattedTableCellFactory());
+        
         pista1Table.setItems(FXCollections.observableArrayList(disponibilidadPista1));
         pista2Table.setItems(FXCollections.observableArrayList(disponibilidadPista2));
         pista3Table.setItems(FXCollections.observableArrayList(disponibilidadPista3));
         pista4table.setItems(FXCollections.observableArrayList(disponibilidadPista4));
-
-    
-    
+        
+        TableViewDisponibilidadFXID.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        pista1Table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        pista2Table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        pista3Table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        pista4table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        
+        
     }
     
     
@@ -397,7 +418,16 @@ public class FXMLDocumentController implements Initializable {
     private void actualizarDisponiblidad(ActionEvent event) {
        actualizarDisponiblidad();
     } 
+
+    @FXML
+    private void darkMode(ActionEvent event) {
+        
+        
+        
+        
+    }
 }
+
 //Clase para el listado de reservas del usuario
     class UserBookings extends ListCell<Booking> { 
         @Override
@@ -407,4 +437,4 @@ public class FXMLDocumentController implements Initializable {
             else setText( item.getMadeForDay()+
                         " | " + item.getFromTime() + " | pagado: " + item.getPaid() + " | " + item.getCourt().getName());
         }
-} 
+    }
