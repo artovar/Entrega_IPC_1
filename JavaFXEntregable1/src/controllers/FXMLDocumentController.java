@@ -35,6 +35,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -132,6 +133,10 @@ public class FXMLDocumentController implements Initializable {
     private AnchorPane DispoPane;
     @FXML
     private VBox DispoBox;
+    @FXML
+    private Button perfilButton;
+    @FXML
+    private ImageView fotoPerfil;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -142,7 +147,7 @@ public class FXMLDocumentController implements Initializable {
         
         
                 
-        mostrarReservas();
+        
         //GESTION TABLA DISPONIBILIDAD
         ArrayList<String> horaList = new ArrayList<>();
         horaList.add("9:00");horaList.add("10:30");
@@ -213,6 +218,7 @@ public class FXMLDocumentController implements Initializable {
     private void mostrarReservas() {
         ClubDBAccess clubDBAcess;
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
+        borrarReservasPasadas();
         //LISTADO DE RESERVAS DEL USUARIO
         ArrayList<Booking> reservasUser = clubDBAcess.getUserBookings(username);
         datosReservas = FXCollections.observableArrayList(reservasUser);
@@ -286,6 +292,7 @@ public class FXMLDocumentController implements Initializable {
             if(!user.getCreditCard().equals("") && !user.getSvc().equals("")){
                 pagarButton.setDisable(true);
             }
+            fotoPerfil.setImage(men.getImage());
         }else{usernameLabelFXID.setText("Invitado"); }
         registrado = registered;
         System.out.print(registrado);
@@ -298,7 +305,10 @@ public class FXMLDocumentController implements Initializable {
             MisReservasButtonFXID.setDisable(true);
             PistasTabFXID.setDisable(true);
             ReservasTabFXID.setDisable(true);
+            perfilButton.setDisable(true);
+            perfilButton.setVisible(false);
         }
+        
     }
     
     @FXML
@@ -420,11 +430,40 @@ public class FXMLDocumentController implements Initializable {
     } 
 
     @FXML
+
     private void darkMode(ActionEvent event) {
+
+
+    }
         
         
         
         
+    @FXML
+    private void abrirPerfil(ActionEvent event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/perfil.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        PerfilController perfilController = fxmlLoader.<PerfilController>getController();
+        perfilController.data(member);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Perfil");
+        stage.setScene(new Scene(root1));  
+        stage.showAndWait();
+    }
+    
+    
+    private void borrarReservasPasadas(){
+        clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
+        int cont = 0;
+        ArrayList<Booking> aux = clubDBAcess.getUserBookings(username);
+        for(int i = 0; i < aux.size(); i++){
+            if(aux.get(i).getMadeForDay().isBefore(LocalDate.now())){
+                clubDBAcess.getBookings().remove(aux.get(i));
+                cont++;
+            }
+        }
+        if(cont != 0){clubDBAcess.saveDB();}
     }
 }
 
