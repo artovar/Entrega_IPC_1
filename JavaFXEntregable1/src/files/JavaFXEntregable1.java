@@ -35,28 +35,6 @@ public class JavaFXEntregable1 extends Application {
         scene.getStylesheets().add("styles/main.css");
         stage.show();
         
-        /*
-        stage.setOnCloseRequest((event) -> {
-           
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(clubDBAccess.getClubName());
-            alert.setHeaderText("Guardado de datos");
-            alert.setContentText("La aplicación guardará los datos proporcionados antes de cerrarse");
-            alert.show();
-            clubDBAccess.saveDB();
-            
-        });*/
-        /*
-        ArrayList<Booking> reservasUser = clubDBAccess.getBookings();
-        for(int i = 0; i < reservasUser.size() ; i++){
-            if(reservasUser.get(i).getMadeForDay().isBefore(LocalDate.now())){
-                clubDBAccess.getBookings().remove(reservasUser.get(i));
-                reservasUser.remove(i);
-            }
-        }*/
-
-
-
     }
 
     /**

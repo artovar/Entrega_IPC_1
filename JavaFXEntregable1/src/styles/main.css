@@ -6,14 +6,14 @@
     -fx-font-family:Yu-Gothic;
     -fx-font-size:57px;
     -fx-text-fill: #ffffff;
-    -fx-background-color: #4c565e;
+    -fx-background-color: #39c0ba;
     -fx-border-radius: 0,0;
-    -fx-border-color: #4c565e;
+    -fx-border-color: #39c0ba;
 }
 
 .button:hover {
     
-    -fx-background-color: #687177;
+    -fx-background-color: #009d84;
     
     
 }
@@ -21,10 +21,13 @@
 
 
 .button:pressed {
-    -fx-background-color: #9a9e99;
+    -fx-background-color: #138b7a;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
   
 }
+
+.date-picker{}
+
 
 .AnchorPane {
     -fx-background-color:f1eeda;
@@ -37,6 +40,16 @@
 .AnchorPane:top(TabPane).tab-header-area {
     
     -fx-background-color:#f1eeda;
+    
+    
+}
+.rellenoStyle {
+    
+    -fx-background-color: #39c0ba ;
+    -fx-text-fill: #f1eeda;
+    -fx-font-size: 25px;
+    -fx-border-color: #39c0ba;
+    -fx-alignment: CENTER;
     
     
 }
@@ -54,6 +67,21 @@
     
     -fx-background-color:f1eeda ;
     -fx-text-fill: #000000;
+    -fx-border-color: #f1eeda;
+    
+}
+.CourtButton:hover{
+    -fx-background-color: #39c0ba;
+    -fx-text-fill: #f1eeda;
+    
+    
+}
+.CourtButton:pressed {
+    
+    
+    
+    -fx-background-color: #009d84;
+    -fx-text-fill: #f1eeda;
     
 }
 .menuButton{
@@ -61,30 +89,31 @@
     
     -fx-border-radius:  0 50 50 0;
     -fx-background-radius: 0 50 50 0;
+    
         
     
     
     
 }
 
-.Table-view{
-    -fx-cell-size: 100px;
-    
-    
-    
-    
-    
-}
 .disponibleStyle{
     
-    -fx-background-color: #94bf6e;
+    -fx-background-color: #39c0ba;
+    -fx-text-fill: #f1eeda;
     -fx-font-size: 25px;
     -fx-alignment: CENTER;
 
 }
+.defaultReservasStyle {
+    
+    
+    -fx-background-color: #f1eeda;
+    
+}
 .ocupadoStyle{
     
     -fx-background-color: #e75244;
+    -fx-text-fill: #f1eeda;
     -fx-font-size: 25px;
     -fx-alignment: CENTER;
 }
@@ -93,6 +122,7 @@
     
     -fx-font-size: 25px;
     -fx-alignment: CENTER;
+    -fx-background-color:#f1eeda;
     
 }
 .reservasTable {

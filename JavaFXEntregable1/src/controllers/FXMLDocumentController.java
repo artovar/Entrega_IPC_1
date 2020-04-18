@@ -7,6 +7,7 @@ package controllers;
 
 import DBAcess.ClubDBAccess;
 import clases.FormattedTableCellFactory;
+import clases.FormattedTableCellFactoryReservas;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -120,6 +121,8 @@ public class FXMLDocumentController implements Initializable {
     private Boolean registrado;
     @FXML
     private Button pagarButton;
+    
+    String actualStyle = "styles/main.css";
 
     @FXML
     private Button actualizarButtonFXID;
@@ -240,9 +243,16 @@ public class FXMLDocumentController implements Initializable {
         borrarReservasPasadas();
         //LISTADO DE RESERVAS DEL USUARIO
         ArrayList<Booking> reservasUser = clubDBAcess.getUserBookings(username);
+        diaColum.setCellFactory(new FormattedTableCellFactoryReservas());
         diaColum.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMadeForDay().toString()));
+        
+        horaColum.setCellFactory(new FormattedTableCellFactoryReservas());
         horaColum.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFromTime().toString()));
+        
+        paidColum.setCellFactory(new FormattedTableCellFactoryReservas());
         paidColum.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPaid().toString()));
+        
+        pistaColum.setCellFactory(new FormattedTableCellFactoryReservas());
         pistaColum.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCourt().getName()));
         reservasTable.setItems(FXCollections.observableArrayList(reservasUser));
     }
@@ -467,10 +477,12 @@ public class FXMLDocumentController implements Initializable {
        scene.getStylesheets().clear();
        if(darkmode) {
            scene.getStylesheets().add(darkMode);
+           actualStyle = "styles/main_dark.css";
        }
        else {
            
            scene.getStylesheets().add(lightMode);
+           actualStyle ="styles/main.css";
        }
        darkmode = !darkmode; 
 

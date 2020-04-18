@@ -24,9 +24,9 @@ public class FormattedTableCellFactoryReservas<S, T> implements Callback<TableCo
             @Override
             protected void updateItem(Object item, boolean empty) {
                 // CSS Styles
-                String disponibleStyle = "disponibleStyle";
-                String ocupadoPorOtro = "ocupadoStyle";
-                String defaultTableStyle = "horasStyle";
+                String disponibleStyle = "rellenoStyle";
+            
+                String defaultTableStyle = "defaultReservasStyle";
                 String cssStyle = "";
 
                 model.Booking inboundBean = null;
@@ -41,7 +41,6 @@ public class FormattedTableCellFactoryReservas<S, T> implements Callback<TableCo
 
                 //Remove all previously assigned CSS styles from the cell.
                 getStyleClass().remove(disponibleStyle);
-                getStyleClass().remove(ocupadoPorOtro);
                 getStyleClass().remove(defaultTableStyle);
 
                 super.updateItem((T) item, empty);
@@ -49,11 +48,8 @@ public class FormattedTableCellFactoryReservas<S, T> implements Callback<TableCo
                 //Determine how to format the cell based on the status of the container.
                 if( inboundBean == null ) {
                     cssStyle = defaultTableStyle;
-                } else if( "DISPONIBLE".equals(inboundBean.getMember().getLogin()) ) {
+                } else {
                     cssStyle = disponibleStyle;
-                }
-                else {
-                    cssStyle = ocupadoPorOtro;
                 }
                 
 

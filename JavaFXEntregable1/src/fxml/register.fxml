@@ -14,19 +14,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="756.0" prefWidth="496.0" stylesheets="@../styles/modena_dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="700.0" minWidth="400.0" prefHeight="756.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" prefHeight="72.0" prefWidth="364.0" text="Registro de PaddleExperience" textAlignment="CENTER">
+            <Label alignment="CENTER" prefHeight="72.0" prefWidth="364.0" text="Registro PaddleExperience" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
             <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="320.0">
                <children>
-                  <TextField fx:id="nameText" alignment="CENTER" prefHeight="60.0" prefWidth="320.0" promptText="Nombre">
+                  <TextField fx:id="nameText" alignment="CENTER" maxWidth="350.0" minHeight="25.0" minWidth="55.0" prefHeight="60.0" prefWidth="320.0" promptText="Nombre">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -37,7 +36,7 @@
                         <Insets top="25.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="surnameText" alignment="CENTER" prefHeight="56.0" prefWidth="320.0" promptText="Apellidos">
+                  <TextField fx:id="surnameText" alignment="CENTER" maxWidth="350.0" minHeight="25.0" minWidth="55.0" prefHeight="60.0" prefWidth="320.0" promptText="Apellidos">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -48,7 +47,7 @@
                         <Insets top="25.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="phoneText" alignment="CENTER" prefHeight="58.0" prefWidth="320.0" promptText="Teléfono">
+                  <TextField fx:id="phoneText" alignment="CENTER" maxWidth="350.0" minHeight="25.0" minWidth="55.0" prefHeight="60.0" prefWidth="320.0" promptText="Teléfono">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -59,7 +58,7 @@
                         <Insets top="25.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="loginText" alignment="CENTER" prefHeight="62.0" prefWidth="320.0" promptText="nombre de usuario">
+                  <TextField fx:id="loginText" alignment="CENTER" maxWidth="350.0" minHeight="25.0" minWidth="55.0" prefHeight="60.0" prefWidth="320.0" promptText="nombre de usuario">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -70,7 +69,7 @@
                         <Insets top="25.0" />
                      </VBox.margin>
                   </TextField>
-                  <PasswordField fx:id="passText" alignment="CENTER" prefHeight="61.0" prefWidth="320.0" promptText="Contraseña">
+                  <PasswordField fx:id="passText" alignment="CENTER" maxWidth="350.0" minHeight="25.0" minWidth="55.0" prefHeight="60.0" prefWidth="320.0" promptText="Contraseña">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -83,7 +82,7 @@
                   </PasswordField>
                   <HBox alignment="CENTER" prefHeight="61.0" prefWidth="320.0">
                      <children>
-                        <TextField fx:id="creditText" alignment="CENTER" prefHeight="45.0" prefWidth="222.0" promptText="Tarjeta de Crédito (opcional)">
+                        <TextField fx:id="creditText" alignment="CENTER" maxWidth="350.0" minHeight="25.0" minWidth="55.0" prefHeight="60.0" prefWidth="222.0" promptText="Tarjeta de Crédito (opcional)">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -94,7 +93,7 @@
                               <Insets />
                            </HBox.margin>
                         </TextField>
-                        <TextField fx:id="svcText" alignment="CENTER" prefHeight="45.0" prefWidth="108.0" promptText="SVC (opcional)">
+                        <TextField fx:id="svcText" alignment="CENTER" maxWidth="350.0" minHeight="25.0" minWidth="55.0" prefHeight="60.0" prefWidth="145.0" promptText="SVC (opcional)">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -135,7 +134,7 @@
                         <Insets />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton fx:id="Radio3" mnemonicParsing="false">
+                  <RadioButton fx:id="Radio3" contentDisplay="CENTER" maxHeight="59.0" maxWidth="49.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="49.0" style="-fx-max-width: 0; -fx-max-height: 0;">
                      <toggleGroup>
                         <ToggleGroup fx:id="Radio" />
                      </toggleGroup>
@@ -167,10 +166,13 @@
                   </RadioButton>
                </children>
             </HBox>
-            <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerButton" prefHeight="72.0" prefWidth="320.0" text="Registrarme">
+            <Button fx:id="registerButton" alignment="CENTER" maxWidth="350.0" minHeight="50.0" minWidth="250.0" mnemonicParsing="false" onAction="#registerButton" prefHeight="60.0" prefWidth="821.0" style="-fx-font-size: 25;" text="Registrarme">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
+               <VBox.margin>
+                  <Insets left="100.0" right="100.0" />
+               </VBox.margin>
             </Button>
          </children>
       </VBox>

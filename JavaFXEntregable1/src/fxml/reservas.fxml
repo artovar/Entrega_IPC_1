@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="862.0" stylesheets="@../styles/modena_dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.reservasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="862.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.reservasController">
    <children>
       <HBox alignment="CENTER" prefHeight="388.0" prefWidth="840.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -24,18 +24,18 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="datePicker" prefHeight="43.0" prefWidth="164.0" promptText="Selecciona una fecha">
+                  <DatePicker fx:id="datePicker" prefHeight="52.0" prefWidth="147.0" promptText="Selecciona una fecha" styleClass="date-picker">
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>
                   </DatePicker>
-                  <Button fx:id="filtrarButton" mnemonicParsing="false" onAction="#filtrarReservas" prefHeight="57.0" prefWidth="164.0" text="Buscar" />
+                  <Button fx:id="filtrarButton" mnemonicParsing="false" onAction="#filtrarReservas" prefHeight="57.0" prefWidth="164.0" style="-fx-font-size: 25;" text="Buscar" />
                </children>
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
             </VBox>
-            <ListView fx:id="listaPista" prefHeight="1080.0" prefWidth="1920.0">
+            <ListView fx:id="listaPista" prefHeight="1080.0" prefWidth="1920.0" style="-fx-fixed-cell-size: 50;">
                <padding>
                   <Insets top="20.0" />
                </padding>
@@ -43,7 +43,7 @@
                   <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                </HBox.margin>
             </ListView>
-            <Button fx:id="reservarButton" disable="true" mnemonicParsing="false" onAction="#reservarPista" prefHeight="50.0" prefWidth="1600.0" text="Reservar">
+            <Button fx:id="reservarButton" disable="true" mnemonicParsing="false" onAction="#reservarPista" prefHeight="56.0" prefWidth="1700.0" style="-fx-font-size: 25;" text="Reservar">
                <HBox.margin>
                   <Insets right="50.0" />
                </HBox.margin>
