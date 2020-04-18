@@ -13,9 +13,9 @@ import javafx.util.Callback;
  *
  * @author aaren
  */
-public class FormattedTableCellFactory<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
+public class FormattedTableCellFactoryReservas<S, T> implements Callback<TableColumn<S, T>, TableCell<S, T>> {
 
-    public FormattedTableCellFactory() {
+    public FormattedTableCellFactoryReservas() {
     }
 
     @Override

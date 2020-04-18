@@ -7,6 +7,7 @@ package controllers;
 
 import DBAcess.ClubDBAccess;
 import clases.FormattedTableCellFactory;
+
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,6 +22,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -67,12 +69,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Tab DisponibilidadTabFXID;
     
+    private Boolean darkmode = true;
     
     private String username;
     
+    
     @FXML
     private Label usernameLabelFXID;
-    @FXML
     private ListView<Booking> ListViewReservasFXID;
     @FXML
     private TableView<String> TableViewDisponibilidadFXID;
@@ -137,16 +140,28 @@ public class FXMLDocumentController implements Initializable {
     private Button perfilButton;
     @FXML
     private ImageView fotoPerfil;
+    @FXML
+    private Label nombreLabel;
+    @FXML
+    private Label telefonoLabel;
+    @FXML
+    private Label tarjetaLabel;
+    @FXML
+    private Tab PerfilTabFXID;
+    @FXML
+    private TableView<Booking> reservasTable;
+    @FXML
+    private TableColumn<Booking, String> diaColum;
+    @FXML
+    private TableColumn<Booking, String> horaColum;
+    @FXML
+    private TableColumn<Booking, String> pistaColum;
+    @FXML
+    private TableColumn<Booking, String> paidColum;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
-        
-        
-        
-        
-                
         
         //GESTION TABLA DISPONIBILIDAD
         ArrayList<String> horaList = new ArrayList<>();
@@ -155,9 +170,12 @@ public class FXMLDocumentController implements Initializable {
         horaList.add("15:00");horaList.add("16:30");
         horaList.add("18:00");horaList.add("19:30");
         horaList.add("21:00");
+        horaColumFXID.setCellFactory(new FormattedTableCellFactory());
         horaColumFXID.setCellValueFactory(cellData0 -> new SimpleStringProperty(cellData0.getValue()));
         TableViewDisponibilidadFXID.setItems(FXCollections.observableArrayList(horaList));
         actualizarDisponiblidad();
+        
+        
     }
     
     @FXML
@@ -183,21 +201,22 @@ public class FXMLDocumentController implements Initializable {
         disponibilidadPista2 = ordenarReservas(disponibilidadPista2, pista2);
         disponibilidadPista3 = ordenarReservas(disponibilidadPista3, pista3);
         disponibilidadPista4 = ordenarReservas(disponibilidadPista4, pista4);
+        
         pista1ColumFXID.setCellFactory(new FormattedTableCellFactory());
         pista1ColumFXID.setCellValueFactory(cellData1 -> new SimpleStringProperty(cellData1.getValue().getMember().getLogin()));
-        pista1ColumFXID.setCellFactory(new FormattedTableCellFactory());
+        
         
         pista2ColumFXID.setCellFactory(new FormattedTableCellFactory());
         pista2ColumFXID.setCellValueFactory(cellData2 -> new SimpleStringProperty(cellData2.getValue().getMember().getLogin()));
-        pista2ColumFXID.setCellFactory(new FormattedTableCellFactory());
+        
         
         pista3ColumFXID.setCellFactory(new FormattedTableCellFactory());
         pista3ColumFXID.setCellValueFactory(cellData3 -> new SimpleStringProperty(cellData3.getValue().getMember().getLogin()));
-        pista3ColumFXID.setCellFactory(new FormattedTableCellFactory());
+        
         
         pista4ColumFXID.setCellFactory(new FormattedTableCellFactory());
         pista4ColumFXID.setCellValueFactory(cellData4 -> new SimpleStringProperty(cellData4.getValue().getMember().getLogin()));
-        pista4ColumFXID.setCellFactory(new FormattedTableCellFactory());
+        
         
         pista1Table.setItems(FXCollections.observableArrayList(disponibilidadPista1));
         pista2Table.setItems(FXCollections.observableArrayList(disponibilidadPista2));
@@ -221,9 +240,11 @@ public class FXMLDocumentController implements Initializable {
         borrarReservasPasadas();
         //LISTADO DE RESERVAS DEL USUARIO
         ArrayList<Booking> reservasUser = clubDBAcess.getUserBookings(username);
-        datosReservas = FXCollections.observableArrayList(reservasUser);
-        ListViewReservasFXID.setCellFactory(c -> new UserBookings());
-        ListViewReservasFXID.setItems(datosReservas);
+        diaColum.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMadeForDay().toString()));
+        horaColum.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFromTime().toString()));
+        paidColum.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPaid().toString()));
+        pistaColum.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCourt().getName()));
+        reservasTable.setItems(FXCollections.observableArrayList(reservasUser));
     }
     
     
@@ -233,19 +254,20 @@ public class FXMLDocumentController implements Initializable {
     private void eliminarReserva(ActionEvent event) {
         ClubDBAccess clubDBAcess;
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
-        Booking newBooking = ListViewReservasFXID.getSelectionModel().getSelectedItem();
+        Booking newBooking = reservasTable.getSelectionModel().getSelectedItem();
         if(newBooking.isOlderForDay(LocalDate.now())){
             clubDBAcess.getBookings().remove(newBooking);
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Reserva eliminada");
                 alert.setHeaderText("La reserva seleccionada ha sido eliminada");
+                mostrarReservas();
             
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK){
-                TabPaneFXID.getSelectionModel().select(PistasTabFXID);
+                TabPaneFXID.getSelectionModel().select(ReservasTabFXID);
                 clubDBAcess.saveDB();
                 } else {
-                TabPaneFXID.getSelectionModel().select(PistasTabFXID);
+                TabPaneFXID.getSelectionModel().select(ReservasTabFXID);
                 clubDBAcess.saveDB();
                 }
         }
@@ -284,6 +306,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     public void initMember(Member men,Boolean registered) {
+        
         if(men != null){
             user = men;
             member = men;
@@ -325,7 +348,8 @@ public class FXMLDocumentController implements Initializable {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
-            stage.setScene(new Scene(root));  
+            stage.setScene(new Scene(root));
+            stage.getScene().getStylesheets().add("styles/main.css");
             stage.show();
         }
         if(event.getSource().equals(pista2)){
@@ -338,6 +362,8 @@ public class FXMLDocumentController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
             stage.setScene(new Scene(root));  
+            stage.getScene().getStylesheets().add("styles/main.css");
+            
             stage.show();
         }
         if(event.getSource().equals(pista3)){
@@ -350,6 +376,7 @@ public class FXMLDocumentController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
             stage.setScene(new Scene(root));  
+            stage.getScene().getStylesheets().add("styles/main.css");
             stage.show();
         }
         if(event.getSource().equals(pista4)){
@@ -362,6 +389,7 @@ public class FXMLDocumentController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
             stage.setScene(new Scene(root));  
+            stage.getScene().getStylesheets().add("styles/main.css");
             stage.show();
         }
     }
@@ -432,25 +460,36 @@ public class FXMLDocumentController implements Initializable {
     @FXML
 
     private void darkMode(ActionEvent event) {
-
+        
+       Scene scene = (Scene)((Node) event.getSource()).getScene();
+       String lightMode = getClass().getResource("/styles/main.css").toExternalForm();
+       String darkMode = getClass().getResource("/styles/modena_dark.css").toExternalForm();
+       scene.getStylesheets().clear();
+       if(darkmode) {
+           scene.getStylesheets().add(darkMode);
+       }
+       else {
+           
+           scene.getStylesheets().add(lightMode);
+       }
+       darkmode = !darkmode; 
 
     }
-        
-        
-        
+
         
     @FXML
     private void abrirPerfil(ActionEvent event) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/perfil.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        PerfilController perfilController = fxmlLoader.<PerfilController>getController();
-        perfilController.data(member);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Perfil");
-        stage.setScene(new Scene(root1));  
-        stage.showAndWait();
+        
+        TabPaneFXID.getSelectionModel().select(PerfilTabFXID);
+        
+        nombreLabel.setText(user.getName() + " " + user.getSurname());
+        telefonoLabel.setText(user.getTelephone());
+        tarjetaLabel.setText("*********" + user.getCreditCard().substring(8));
+        fotoPerfil.setImage(user.getImage());
     }
+    
+    
+    
     
     
     private void borrarReservasPasadas(){

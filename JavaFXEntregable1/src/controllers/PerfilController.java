@@ -34,10 +34,5 @@ public class PerfilController implements Initializable {
         // TODO
     }    
     
-    public void data(Member mem){
-        user = mem;
-        nombreLabel.setText(user.getName() + " " + user.getSurname());
-        telefonoLabel.setText(user.getTelephone());
-        tarjetaLabel.setText("*********" + user.getCreditCard().substring(8));
-    }
+    
 }

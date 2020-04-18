@@ -32,6 +32,7 @@ public class JavaFXEntregable1 extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(true);
+        scene.getStylesheets().add("styles/main.css");
         stage.show();
         
         /*

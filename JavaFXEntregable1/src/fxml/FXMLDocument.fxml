@@ -3,11 +3,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,72 +15,76 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="842.0" prefWidth="1341.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLDocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="842.0" prefWidth="1341.0" styleClass="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLDocumentController">
    <children>
-      <HBox prefHeight="974.0" prefWidth="1374.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefHeight="842.0" prefWidth="300.0">
+            <VBox alignment="CENTER" maxWidth="700.0" minWidth="275.0" prefHeight="842.0" prefWidth="1158.0">
                <children>
-                  <ImageView fitHeight="260.0" fitWidth="303.0" pickOnBounds="true" preserveRatio="true" styleClass="AnchorPane">
+                  <ImageView fitHeight="291.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true" styleClass="AnchorPane">
                      <image>
                         <Image url="@../images/Logo.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="usernameLabelFXID" alignment="CENTER" contentDisplay="CENTER" prefHeight="700.0" prefWidth="222.0" text="Mi Usuario" textAlignment="CENTER">
+                  <Label fx:id="usernameLabelFXID" alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="1080.0" text="Mi Usuario" textAlignment="CENTER">
                      <font>
                         <Font size="35.0" />
                      </font>
                   </Label>
 
-                  <Button fx:id="PistasButtonFXID" mnemonicParsing="false" onAction="#selecPistas" prefHeight="800.0" prefWidth="261.0" style="-fx-font-size: 25;" text="PISTAS" textAlignment="CENTER">
-                  <Button fx:id="perfilButton" mnemonicParsing="false" onAction="#abrirPerfil" prefHeight="750.0" prefWidth="363.0" text="PERFIL">
-                     <graphic>
-                        <ImageView fx:id="fotoPerfil" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <font>
+                  <Button fx:id="PistasButtonFXID" mnemonicParsing="false" onAction="#selecPistas" prefHeight="800.0" prefWidth="1920.0" style="-fx-font-size: 30;" styleClass="menuButton" text="PISTAS" textAlignment="CENTER">
+                    <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="PistasButtonFXID" mnemonicParsing="false" onAction="#selecPistas" prefHeight="750.0" prefWidth="363.0" style="-fx-font-size: 25;" text="PISTAS" textAlignment="CENTER">
+                  <Button fx:id="MisReservasButtonFXID" mnemonicParsing="false" onAction="#selecResevas" prefHeight="800.0" prefWidth="1080.0" style="-fx-font-size: 30;" styleClass="menuButton" text="MIS RESERVAS">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="MisReservasButtonFXID" mnemonicParsing="false" onAction="#selecResevas" prefHeight="800.0" prefWidth="1080.0" style="-fx-font-size: 25;" text="MIS RESERVAS">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="DisponibilidadButtonFXID" mnemonicParsing="false" onAction="#selecDisponibilidad" prefHeight="800.0" prefWidth="1082.0" style="-fx-font-size: 23;" text="DISPONIBLIDAD ">
+                  <Button fx:id="DisponibilidadButtonFXID" mnemonicParsing="false" onAction="#selecDisponibilidad" prefHeight="800.0" prefWidth="1082.0" style="-fx-font-size: 30;" styleClass="menuButton" text="DISPONIBLIDAD ">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <AnchorPane prefHeight="1000.0" prefWidth="261.0" styleClass="AnchorPane">
+                  <Button fx:id="perfilButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#abrirPerfil" prefHeight="800.0" prefWidth="1080.0" style="-fx-font-size: 30;" styleClass="menuButton" text="PERFIL">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </Button>
+                  <AnchorPane prefHeight="785.0" prefWidth="275.0" styleClass="AnchorPane">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="91.0" layoutY="48.0" mnemonicParsing="false" onAction="#darkMode" prefHeight="51.0" prefWidth="45.0" style="-fx-border-radius: 100; -fx-background-radius: 100;" text="Φ" AnchorPane.bottomAnchor="176.0" AnchorPane.leftAnchor="91.0">
-                           <font>
-                              <Font name="System Bold" size="34.0" />
-                           </font></Button>
+                        <HBox alignment="CENTER" layoutX="-1.0" layoutY="25.0" prefHeight="65.0" prefWidth="269.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#darkMode" prefHeight="90.0" prefWidth="92.0" style="-fx-border-radius: 100; -fx-background-radius: 100; -fx-background-size: 200;" styleClass="actualizarbutton" text="Φ" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="1.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                   </AnchorPane>
                </children>
             </VBox>
-            <TabPane fx:id="TabPaneFXID" prefHeight="982.0" prefWidth="1125.0" style="-fx-tab-max-height: 0; -fx-background-color: #D0B7A0; -fx-tab-max-width: 0;" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="TabPaneFXID" minHeight="600.0" minWidth="600.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-tab-max-width: 0; -fx-tab-max-height: 0;" styleClass="AnchorPane" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab fx:id="PistasTabFXID" text="PISTAS">
                      <content>
-                        <AnchorPane fx:id="pistasPane" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="945.0" prefWidth="917.0" styleClass="AnchorPane">
+                        <AnchorPane fx:id="pistasPane" minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="1080.0" prefWidth="1920.0" styleClass="AnchorPane">
                            <children>
-                              <HBox fx:id="PIstasBox" layoutX="118.0" prefHeight="583.0" prefWidth="694.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <HBox fx:id="PIstasBox" layoutX="118.0" prefHeight="1920.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <VBox prefHeight="1080.0" prefWidth="1920.0">
                                        <children>
-                                          <Button fx:id="pista1" mnemonicParsing="false" onAction="#reservar" prefHeight="1080.0" prefWidth="1920.0" text="PISTA 1">
+                                          <Button fx:id="pista1" mnemonicParsing="false" onAction="#reservar" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-radius: 100 0 0 0; -fx-border-radius: 100 0 0 0;" styleClass="CourtButton" text="PISTA 1">
                                              <font>
                                                 <Font size="57.0" />
                                              </font></Button>
-                                          <Button fx:id="pista3" mnemonicParsing="false" onAction="#reservar" prefHeight="1080.0" prefWidth="768.0" text="PISTA 3">
+                                          <Button fx:id="pista3" mnemonicParsing="false" onAction="#reservar" prefHeight="1080.0" prefWidth="1920.0" style="-fx-border-radius: 0 0 0 100; -fx-background-radius: 0 0 0 100;" styleClass="CourtButton" text="PISTA 3">
                                              <font>
                                                 <Font size="57.0" />
                                              </font></Button>
@@ -88,11 +92,11 @@
                                     </VBox>
                                     <VBox prefHeight="1080.0" prefWidth="1920.0">
                                        <children>
-                                          <Button fx:id="pista2" mnemonicParsing="false" onAction="#reservar" prefHeight="1080.0" prefWidth="1920.0" text="PISTA 2">
+                                          <Button fx:id="pista2" mnemonicParsing="false" onAction="#reservar" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-radius: 0 100 0 0; -fx-border-radius: 0 100 0 0;" styleClass="CourtButton" text="PISTA 2">
                                              <font>
                                                 <Font size="57.0" />
                                              </font></Button>
-                                          <Button fx:id="pista4" mnemonicParsing="false" onAction="#reservar" prefHeight="1080.0" prefWidth="908.0" text="PISTA 4">
+                                          <Button fx:id="pista4" mnemonicParsing="false" onAction="#reservar" prefHeight="1080.0" prefWidth="1920.0" style="-fx-border-radius: 0 0 100 0; -fx-background-radius: 0 0 100 0;" styleClass="CourtButton" text="PISTA 4">
                                              <font>
                                                 <Font size="57.0" />
                                              </font></Button>
@@ -110,25 +114,31 @@
                            <children>
                               <VBox fx:id="ReservasBox" nodeOrientation="LEFT_TO_RIGHT" prefHeight="712.0" prefWidth="812.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="98.0" prefWidth="1920.0" text="TUS PROXIMAS RESERVAS" textFill="WHITE">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="955.0" prefWidth="1920.0" text="TUS PROXIMAS RESERVAS" textAlignment="CENTER">
                                        <font>
-                                          <Font size="32.0" />
+                                          <Font name="Yu Gothic Bold" size="40.0" />
                                        </font>
                                     </Label>
-                                    <ListView fx:id="ListViewReservasFXID" prefHeight="1500.0" prefWidth="812.0" />
+                                    <TableView fx:id="reservasTable" prefHeight="1450.0" prefWidth="1920.0" styleClass="reservasTable">
+                                      <columns>
+                                        <TableColumn fx:id="diaColum" prefWidth="229.0" styleClass="reservasTable" text="DIA" />
+                                        <TableColumn fx:id="horaColum" prefWidth="299.0" styleClass="reservasTable" text="HORA" />
+                                          <TableColumn fx:id="pistaColum" prefWidth="261.0" styleClass="reservasTable" text="PISTA" />
+                                          <TableColumn fx:id="paidColum" prefWidth="275.0" styleClass="reservasTable" text="PAGADO" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
                                     <HBox alignment="CENTER" prefHeight="1000.0" prefWidth="812.0">
                                        <children>
-                                          <Button fx:id="eliminarButton" mnemonicParsing="false" onAction="#eliminarReserva" prefHeight="63.0" prefWidth="196.0" text="Eliminar reserva">
+                                          <Button id="reservaBut" fx:id="pagarButton1" mnemonicParsing="false" onAction="#selecPistas" prefHeight="57.0" prefWidth="204.0" styleClass="reservaBut" text="Nueva reserva" />
+                                          <Button id="reservaBut" fx:id="pagarButton" mnemonicParsing="false" onAction="#pagarReserva" prefHeight="57.0" prefWidth="204.0" styleClass="reservaBut" text="Pagar Reserva">
                                              <HBox.margin>
                                                 <Insets left="25.0" right="25.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button fx:id="pagarButton" mnemonicParsing="false" onAction="#pagarReserva" prefHeight="57.0" prefWidth="204.0" text="Pagar Reserva">
-                                             <HBox.margin>
-                                                <Insets left="25.0" right="25.0" />
-                                             </HBox.margin>
-                                          </Button>
-                                          <Button fx:id="eliminarButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#eliminarReserva" prefHeight="60.0" prefWidth="214.0" text="Eliminar reserva">
+                                          <Button id="reservaBut" fx:id="eliminarButton" mnemonicParsing="false" onAction="#eliminarReserva" prefHeight="63.0" prefWidth="196.0" styleClass="reservaBut" text="Eliminar reserva">
                                              <HBox.margin>
                                                 <Insets left="25.0" right="25.0" />
                                              </HBox.margin>
@@ -147,33 +157,48 @@
                            <children>
                               <VBox fx:id="DispoBox" alignment="TOP_CENTER" prefHeight="714.0" prefWidth="812.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Button fx:id="actualizarButtonFXID" mnemonicParsing="false" onAction="#actualizarDisponiblidad" prefHeight="374.0" prefWidth="1119.0" text="Actualizar" />
+                                    <Button fx:id="actualizarButtonFXID" mnemonicParsing="false" onAction="#actualizarDisponiblidad" prefHeight="101.0" prefWidth="1920.0" styleClass="actualizarbutton" text="Actualizar" />
                                     <HBox prefHeight="1080.0" prefWidth="1920.0">
                                        <children>
-                                          <TableView fx:id="TableViewDisponibilidadFXID" prefHeight="1080.0" prefWidth="1920.0">
+                                          <TableView fx:id="TableViewDisponibilidadFXID" minHeight="750.0" prefHeight="1080.0" prefWidth="1920.0" styleClass="AnchorPane">
                                              <columns>
-                                                <TableColumn fx:id="horaColumFXID" prefWidth="1920.0" text="Hora" />
+                                                <TableColumn fx:id="horaColumFXID" editable="false" prefWidth="1920.0" sortable="false" text="Hora" />
                                              </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
                                           </TableView>
-                                          <TableView fx:id="pista1Table" prefHeight="1080.0" prefWidth="1920.0">
+                                          <TableView fx:id="pista1Table" minHeight="750.0" prefHeight="1080.0" prefWidth="1920.0" styleClass="AnchorPane">
                                              <columns>
-                                                <TableColumn fx:id="pista1ColumFXID" prefWidth="1920.0" text="Pista 1" />
+                                                <TableColumn fx:id="pista1ColumFXID" editable="false" prefWidth="1920.0" sortable="false" text="Pista 1" />
                                              </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
                                           </TableView>
-                                          <TableView fx:id="pista2Table" prefHeight="1080.0" prefWidth="1920.0">
+                                          <TableView fx:id="pista2Table" minHeight="750.0" prefHeight="1080.0" prefWidth="1920.0" styleClass="AnchorPane">
                                              <columns>
-                                                <TableColumn fx:id="pista2ColumFXID" prefWidth="1920.0" text="Pista 2" />
+                                                <TableColumn fx:id="pista2ColumFXID" editable="false" prefWidth="1920.0" sortable="false" text="Pista 2" />
                                              </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
                                           </TableView>
-                                          <TableView fx:id="pista3Table" prefHeight="1080.0" prefWidth="1920.0">
+                                          <TableView fx:id="pista3Table" minHeight="750.0" prefHeight="1080.0" prefWidth="1920.0" styleClass="AnchorPane">
                                              <columns>
-                                                <TableColumn fx:id="pista3ColumFXID" prefWidth="1920.0" text="Pista 3" />  
+                                                <TableColumn fx:id="pista3ColumFXID" editable="false" prefWidth="1920.0" sortable="false" text="Pista 3" />  
                                              </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
                                           </TableView>
-                                          <TableView fx:id="pista4table" prefHeight="1080.0" prefWidth="1920.0">
+                                          <TableView fx:id="pista4table" minHeight="750.0" prefHeight="1080.0" prefWidth="1920.0" styleClass="AnchorPane">
                                              <columns>
-                                                <TableColumn fx:id="pista4ColumFXID" prefWidth="1920.0" text="Pista 4" />
+                                                <TableColumn fx:id="pista4ColumFXID" editable="false" prefWidth="1920.0" sortable="false" text="Pista 4" />
                                              </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
                                           </TableView>
                                        </children>
                                     </HBox>
@@ -182,6 +207,89 @@
                            </children>
                         </AnchorPane>
                      </content>
+                  </Tab>
+                  <Tab fx:id="PerfilTabFXID" text="PERFIL">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER" layoutX="-4.0" layoutY="-3.0" prefHeight="838.0" prefWidth="1084.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-3.0">
+                                 <children>
+                                    <Label contentDisplay="RIGHT" prefHeight="298.0" prefWidth="1084.0" text="MI PERFIL">
+                                       <font>
+                                          <Font name="System Bold" size="51.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="25.0" top="50.0" />
+                                       </padding>
+                                       <graphic>
+                                          <ImageView fx:id="fotoPerfil" fitHeight="171.0" fitWidth="175.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" translateX="150.0" />
+                                       </graphic>
+                                    </Label>
+                                    <HBox alignment="CENTER" prefHeight="826.0" prefWidth="1084.0">
+                                       <children>
+                                          <VBox prefHeight="570.0" prefWidth="1800.0">
+                                             <children>
+                                                <Label text="NOMBRE Y APELLIDOS:">
+                                                   <font>
+                                                      <Font name="System Bold Italic" size="34.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Label text="TELEFONO:">
+                                                   <font>
+                                                      <Font name="System Bold Italic" size="35.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="TARJETA:">
+                                                   <font>
+                                                      <Font name="System Bold Italic" size="35.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets top="25.0" />
+                                             </HBox.margin>
+                                             <padding>
+                                                <Insets left="25.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox prefHeight="200.0" prefWidth="1920.0">
+                                             <children>
+                                                <Label fx:id="nombreLabel" text="Label">
+                                                   <font>
+                                                      <Font size="40.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="telefonoLabel" text="Label">
+                                                   <font>
+                                                      <Font size="40.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="tarjetaLabel" text="Label">
+                                                   <font>
+                                                      <Font size="40.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="25.0" top="25.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
                   </Tab>
                </tabs>
             </TabPane>

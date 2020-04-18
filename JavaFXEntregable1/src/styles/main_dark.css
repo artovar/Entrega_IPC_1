@@ -8,7 +8,7 @@
     -fx-text-fill: #ffffff;
     -fx-background-color: #4c565e;
     -fx-border-radius: 0,0;
-    -fx-border-color: #4c565e;
+    -fx-border-color: #4c565e0;
 }
 
 .button:hover {
@@ -75,6 +75,24 @@
     
     
 }
+.Table-cell {
+    
+    fx-background:#e75244;
+    
+    
+}
+
+
+.list-view {
+    -fx-background-color: #f1eeda;
+    
+}
+.list-cell {
+    
+    -fx-background-color: #f1eeda;
+    -fx-background-fills: #f1eeda;
+}
+
 .disponibleStyle{
     
     -fx-background-color: #94bf6e;
@@ -96,9 +114,12 @@
     
 }
 .reservasTable {
-    -fx-background-color:#f1eeda ;
+    
     -fx-font-size: 20px;
-    -fx-alignment: CENTER;    
+    -fx-alignment: CENTER;
+    
+    
+    
 }
 
 -reservasTable:nth-child(odd) {

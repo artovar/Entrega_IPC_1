@@ -69,9 +69,11 @@ public class loginController implements Initializable {
             FXMLDocumentController mainController = main.<FXMLDocumentController>getController();
             mainController.initMember(mem, Boolean.TRUE);
             
+            
             //tomamos los valores del dispositivo para ajustar la nueva ventana a una proporcion concreta
                        
             Scene mainScene = new Scene(root);
+            
             Stage mainStage = new Stage();
             mainStage.setScene(mainScene);
             mainStage.setTitle("Paddle Club Premium");
@@ -79,6 +81,7 @@ public class loginController implements Initializable {
             
             Stage loginStage = (Stage) this.logInButton.getScene().getWindow();
             loginStage.close();
+            mainScene.getStylesheets().add("styles/main.css");
             mainStage.show();
 
             
@@ -100,7 +103,9 @@ public class loginController implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Registro");
-        stage.setScene(new Scene(root1));  
+        Scene scene = new Scene(root1);
+        stage.setScene(new Scene(root1));
+        scene.getStylesheets().add("styles/main.css");
         stage.show();
     }
 
@@ -111,11 +116,13 @@ public class loginController implements Initializable {
         FXMLDocumentController mainController = main.<FXMLDocumentController>getController();
         mainController.initMember(null, Boolean.FALSE);
         
+        
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         int width = gd.getDisplayMode().getWidth();
         int height = gd.getDisplayMode().getHeight();
            
         Scene mainScene = new Scene(root2,width*0.75,height*0.75);
+        
         Stage mainStage = new Stage();
         mainStage.setScene(mainScene);
         mainStage.setTitle("Paddle Club Premium");
@@ -123,6 +130,7 @@ public class loginController implements Initializable {
             
         Stage loginStage = (Stage) this.logInButton.getScene().getWindow();
         loginStage.close();
+        mainScene.getStylesheets().add("styles/main.css");
         mainStage.show();
     }
     
