@@ -24,11 +24,14 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-<<<<<<< HEAD
+
+
                   <DatePicker fx:id="datePicker" prefHeight="47.0" prefWidth="211.0" promptText="Selecciona una fecha">
-=======
                   <DatePicker fx:id="datePicker" prefHeight="52.0" prefWidth="147.0" promptText="Selecciona una fecha" styleClass="date-picker">
->>>>>>> parent of 5cf4828... Pues ya estaria
+
+
+                  <DatePicker fx:id="datePicker" prefHeight="52.0" prefWidth="147.0" promptText="Selecciona una fecha" styleClass="date-picker">
+
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>

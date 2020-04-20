@@ -263,29 +263,37 @@
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="1920.0">
                                              <children>
-<<<<<<< HEAD
+
                                                 <Label fx:id="nombreLabel" prefHeight="105.0" prefWidth="843.0">
-=======
+
                                                 <Label fx:id="nombreLabel" text="Label">
->>>>>>> parent of 5cf4828... Pues ya estaria
+
+
+                                                <Label fx:id="nombreLabel" text="Label">
+
                                                    <font>
                                                       <Font size="40.0" />
                                                    </font>
                                                 </Label>
-<<<<<<< HEAD
+
                                                 <Label fx:id="telefonoLabel" prefHeight="82.0" prefWidth="869.0">
-=======
+
                                                 <Label fx:id="telefonoLabel" text="Label">
->>>>>>> parent of 5cf4828... Pues ya estaria
+
+                                                <Label fx:id="telefonoLabel" text="Label">
+
                                                    <font>
                                                       <Font size="40.0" />
                                                    </font>
                                                 </Label>
-<<<<<<< HEAD
+
                                                 <Label fx:id="tarjetaLabel" prefHeight="96.0" prefWidth="997.0">
-=======
+
                                                 <Label fx:id="tarjetaLabel" text="Label">
->>>>>>> parent of 5cf4828... Pues ya estaria
+
+
+                                                <Label fx:id="tarjetaLabel" text="Label">
+
                                                    <font>
                                                       <Font size="40.0" />
                                                    </font>
