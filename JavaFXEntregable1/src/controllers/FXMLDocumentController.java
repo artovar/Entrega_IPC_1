@@ -359,7 +359,7 @@ public class FXMLDocumentController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
             stage.setScene(new Scene(root));
-            stage.getScene().getStylesheets().add("styles/main.css");
+            stage.getScene().getStylesheets().add(actualStyle);
             stage.show();
         }
         if(event.getSource().equals(pista2)){
@@ -372,7 +372,7 @@ public class FXMLDocumentController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
             stage.setScene(new Scene(root));  
-            stage.getScene().getStylesheets().add("styles/main.css");
+            stage.getScene().getStylesheets().add(actualStyle);
             
             stage.show();
         }
@@ -386,7 +386,7 @@ public class FXMLDocumentController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
             stage.setScene(new Scene(root));  
-            stage.getScene().getStylesheets().add("styles/main.css");
+            stage.getScene().getStylesheets().add(actualStyle);
             stage.show();
         }
         if(event.getSource().equals(pista4)){
@@ -399,7 +399,7 @@ public class FXMLDocumentController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Registro");
             stage.setScene(new Scene(root));  
-            stage.getScene().getStylesheets().add("styles/main.css");
+            stage.getScene().getStylesheets().add(actualStyle);
             stage.show();
         }
     }
@@ -473,7 +473,7 @@ public class FXMLDocumentController implements Initializable {
         
        Scene scene = (Scene)((Node) event.getSource()).getScene();
        String lightMode = getClass().getResource("/styles/main.css").toExternalForm();
-       String darkMode = getClass().getResource("/styles/modena_dark.css").toExternalForm();
+       String darkMode = getClass().getResource("/styles/main_dark.css").toExternalForm();
        scene.getStylesheets().clear();
        if(darkmode) {
            scene.getStylesheets().add(darkMode);
