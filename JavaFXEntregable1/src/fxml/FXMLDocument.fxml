@@ -264,6 +264,7 @@
                                           <VBox prefHeight="200.0" prefWidth="1920.0">
                                              <children>
 
+
                                                 <Label fx:id="nombreLabel" prefHeight="105.0" prefWidth="843.0">
 
                                                 <Label fx:id="nombreLabel" text="Label">
@@ -271,10 +272,14 @@
 
                                                 <Label fx:id="nombreLabel" text="Label">
 
+
+                                                <Label fx:id="nombreLabel" text="Label">
+
                                                    <font>
                                                       <Font size="40.0" />
                                                    </font>
                                                 </Label>
+
 
                                                 <Label fx:id="telefonoLabel" prefHeight="82.0" prefWidth="869.0">
 
@@ -282,12 +287,19 @@
 
                                                 <Label fx:id="telefonoLabel" text="Label">
 
+
+                                                <Label fx:id="telefonoLabel" text="Label">
+
                                                    <font>
                                                       <Font size="40.0" />
                                                    </font>
                                                 </Label>
 
+
                                                 <Label fx:id="tarjetaLabel" prefHeight="96.0" prefWidth="997.0">
+
+                                                <Label fx:id="tarjetaLabel" text="Label">
+
 
                                                 <Label fx:id="tarjetaLabel" text="Label">
 

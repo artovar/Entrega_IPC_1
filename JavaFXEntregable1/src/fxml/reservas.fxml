@@ -26,7 +26,11 @@
                   </Label>
 
 
+
                   <DatePicker fx:id="datePicker" prefHeight="47.0" prefWidth="211.0" promptText="Selecciona una fecha">
+                  <DatePicker fx:id="datePicker" prefHeight="52.0" prefWidth="147.0" promptText="Selecciona una fecha" styleClass="date-picker">
+
+
                   <DatePicker fx:id="datePicker" prefHeight="52.0" prefWidth="147.0" promptText="Selecciona una fecha" styleClass="date-picker">
 
 
