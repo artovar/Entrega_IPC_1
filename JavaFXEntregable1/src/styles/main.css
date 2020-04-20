@@ -1,69 +1,99 @@
+
+
+
 .button{
+    
     -fx-font-family:Yu-Gothic;
     -fx-font-size:57px;
-    -fx-text-fill: #f1eeda;
+    -fx-text-fill: #ffffff;
     -fx-background-color: #39c0ba;
     -fx-border-radius: 0,0;
     -fx-border-color: #39c0ba;
 }
+
 .button:hover {
     
     -fx-background-color: #009d84;
+    
+    
 }
+
+
+
 .button:pressed {
     -fx-background-color: #138b7a;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
+  
 }
+
+.date-picker{}
 
 
 .AnchorPane {
     -fx-background-color:f1eeda;
     -fx-font-family:Yu-Gothic;
     -fx-alignment: CENTER;
-    -fx-font-size:20px;
-
+    
+    
+    
 }
 .AnchorPane:top(TabPane).tab-header-area {
+    
     -fx-background-color:#f1eeda;
-
+    
+    
 }
 .rellenoStyle {
+    
     -fx-background-color: #39c0ba ;
     -fx-text-fill: #f1eeda;
     -fx-font-size: 25px;
     -fx-border-color: #39c0ba;
     -fx-alignment: CENTER;
-}
-.rellenoStyle:hover{
     
-    -fx-background-color: #009d84;
+    
 }
 
 .tab-header-background {
     -fx-background-color:#f1eeda;
+    
 }
 .tab:top{
     -fx-background-color:#f1eeda;
-
+    
+    
 }
 .CourtButton {
+    
     -fx-background-color:f1eeda ;
     -fx-text-fill: #000000;
     -fx-border-color: #f1eeda;
+    
 }
 .CourtButton:hover{
     -fx-background-color: #39c0ba;
     -fx-text-fill: #f1eeda;
+    
+    
 }
 .CourtButton:pressed {
+    
+    
+    
     -fx-background-color: #009d84;
     -fx-text-fill: #f1eeda;
-
+    
 }
 .menuButton{
+    
+    
     -fx-border-radius:  0 50 50 0;
     -fx-background-radius: 0 50 50 0;
-    -fx-text-alignment: left;
+    
+        
+    
+    
+    
 }
 
 .disponibleStyle{
@@ -75,7 +105,8 @@
 
 }
 .defaultReservasStyle {
-
+    
+    
     -fx-background-color: #f1eeda;
     
 }
@@ -99,7 +130,6 @@
     -fx-font-size: 20px;
     -fx-alignment: CENTER;    
 }
-
 
 -reservasTable:nth-child(odd) {
     -fx-background-color: #39bca4;
@@ -133,83 +163,10 @@
     
 }
 .actualizarbutton {
-    -fx-font-size:30px;
-        
-
-}
-
-.date-picker .combo-box {
--fx-background-insets:0px ;
--fx-border-width: 0px;
-  }
-
-.date-picker .text-field{
--fx-background-radius:0px ;
--fx-border-color: transparent;
--fx-font-size: 15px;
-}
-
-.date-picker .arrow-button{
--fx-background-radius:0px ;
--fx-background-color: #f1eeda;
-}
-
-.date-picker .arrow-button .arrow{
--fx-background-radius:0px ;
--fx-background-color: #39bca4;
-
-
-}
-
-.darkmode{
-    -fx-background-color: #f1eeda;
+    -fx-font-size:30px
+        ;
+    
     
     
 }
-.date-picker .arrow-button:hover .arrow{
--fx-background-radius:0px ;
--fx-background-color: #39bca4;
 
- }
-
- .date-picker .button {
-     
--fx-background-color: #39bca4;
--fx-text-fill: #f1eeda;
--fx-border-color:transparent;
--fx-pref-height: 35px;
--fx-pref-width: 35px;
--fx-font-size:20px;
- }
-
- .date-picker .button:hover {
--fx-border-color:transparent;
--fx-pref-height: 35px;
--fx-pref-width: 35px;
- }
-
-.date-picker .button .arrow:pressed {
--fx-border-color:transparent;
--fx-pref-height: 35px;
--fx-pref-width: 35px;
- }
-
- .date-picker .cell {
--fx-background-color: #f1eeda;
--fx-pref-width:40px ;
--fx-pref-height:30px ;
--fx-font-size:12px;
-
- }
-
-.date-picker .cell:hover {
--fx-background-color: #39bca4;
--fx-pref-width:30px ;
--fx-pref-height:30px ;
-}
-
-.date-picker .cell:focused {
--fx-background-color:#e75244;
--fx-pref-width:30px ;
--fx-pref-height:30px ;
- }
