@@ -24,7 +24,7 @@
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="datePicker" prefHeight="47.0" prefWidth="200.0" promptText="Selecciona una fecha">
+                  <DatePicker fx:id="datePicker" prefHeight="47.0" prefWidth="211.0" promptText="Selecciona una fecha">
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>

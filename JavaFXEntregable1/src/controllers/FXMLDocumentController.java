@@ -409,7 +409,7 @@ public class FXMLDocumentController implements Initializable {
         
         
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
-        Booking b = ListViewReservasFXID.getSelectionModel().getSelectedItem();
+        Booking b = reservasTable.getSelectionModel().getSelectedItem();
         if(b != null){
             if(!b.getPaid()){
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/pagar.fxml"));
@@ -419,13 +419,13 @@ public class FXMLDocumentController implements Initializable {
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setTitle("Pago");
-                stage.setScene(new Scene(root1));  
+                stage.setScene(new Scene(root1));
+                stage.getScene().getStylesheets().add(actualStyle);
                 stage.showAndWait();
                 
                 ArrayList<Booking> reservasUser = clubDBAcess.getUserBookings(username);
                 datosReservas = FXCollections.observableArrayList(reservasUser);
-                ListViewReservasFXID.setCellFactory(c -> new UserBookings());
-                ListViewReservasFXID.setItems(datosReservas);
+                reservasTable.setItems(datosReservas);
                 clubDBAcess.saveDB();
             }else{
                 Alert alert = new Alert(AlertType.ERROR);
