@@ -431,10 +431,18 @@ public class FXMLDocumentController implements Initializable {
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setTitle("Pago");
-                stage.setScene(new Scene(root1));  
+                stage.setScene(new Scene(root1));
+                stage.getScene().getStylesheets().add(actualStyle);
                 stage.showAndWait();
                 
+
                 mostrarReservas();
+
+                ArrayList<Booking> reservasUser = clubDBAcess.getUserBookings(username);
+                datosReservas = FXCollections.observableArrayList(reservasUser);
+                reservasTable.setItems(datosReservas);
+                clubDBAcess.saveDB();
+
             }else{
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error");
