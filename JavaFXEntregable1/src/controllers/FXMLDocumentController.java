@@ -265,32 +265,44 @@ public class FXMLDocumentController implements Initializable {
         ClubDBAccess clubDBAcess;
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
         Booking newBooking = reservasTable.getSelectionModel().getSelectedItem();
-        if(newBooking.isOlderForDay(LocalDate.now())){
-            clubDBAcess.getBookings().remove(newBooking);
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Reserva eliminada");
-                alert.setHeaderText("La reserva seleccionada ha sido eliminada");
-                mostrarReservas();
+        if(!(newBooking == null)){
+            if(newBooking.isOlderForDay(LocalDate.now())){
+                clubDBAcess.getBookings().remove(newBooking);
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Reserva eliminada");
+                    alert.setHeaderText("La reserva seleccionada ha sido eliminada");
+                    mostrarReservas();
             
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK){
+                    TabPaneFXID.getSelectionModel().select(ReservasTabFXID);
+                    clubDBAcess.saveDB();
+                    } else {
+                    TabPaneFXID.getSelectionModel().select(ReservasTabFXID);
+                    clubDBAcess.saveDB();
+                    }
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Imposible eliminar");
+                alert.setHeaderText("La reserva seleccionada no se puede eliminar");
+                alert.setContentText("No puedes eliminar esta reserva, pues quedan menos de 24 horas");
+
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK){
-                TabPaneFXID.getSelectionModel().select(ReservasTabFXID);
-                clubDBAcess.saveDB();
-                } else {
-                TabPaneFXID.getSelectionModel().select(ReservasTabFXID);
-                clubDBAcess.saveDB();
-                }
-        }
-        else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Imposible eliminar");
-            alert.setHeaderText("La reserva seleccionada no se puede eliminar");
-            alert.setContentText("No puedes eliminar esta reserva, pues quedan menos de 24 horas");
+                System.out.println("OK");
+                } else {System.out.println("CANCEL");}   
+            }
+        }else{
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+           alert.setTitle("Imposible eliminar");
+           alert.setHeaderText("No hay seleccionada ninguna reserva");
+           
 
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK){
-            System.out.println("OK");
-            } else {System.out.println("CANCEL");}   
+           Optional<ButtonType> result = alert.showAndWait();
+           if (result.isPresent() && result.get() == ButtonType.OK){
+           System.out.println("OK");
+           } else {System.out.println("CANCEL");} 
         }
         mostrarReservas();
     }
@@ -409,7 +421,7 @@ public class FXMLDocumentController implements Initializable {
         
         
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
-        Booking b = ListViewReservasFXID.getSelectionModel().getSelectedItem();
+        Booking b = reservasTable.getSelectionModel().getSelectedItem();
         if(b != null){
             if(!b.getPaid()){
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/pagar.fxml"));
@@ -422,11 +434,7 @@ public class FXMLDocumentController implements Initializable {
                 stage.setScene(new Scene(root1));  
                 stage.showAndWait();
                 
-                ArrayList<Booking> reservasUser = clubDBAcess.getUserBookings(username);
-                datosReservas = FXCollections.observableArrayList(reservasUser);
-                ListViewReservasFXID.setCellFactory(c -> new UserBookings());
-                ListViewReservasFXID.setItems(datosReservas);
-                clubDBAcess.saveDB();
+                mostrarReservas();
             }else{
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error");

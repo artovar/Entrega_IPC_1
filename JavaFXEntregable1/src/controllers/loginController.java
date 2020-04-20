@@ -104,7 +104,7 @@ public class loginController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Registro");
         Scene scene = new Scene(root1);
-        stage.setScene(new Scene(root1));
+        stage.setScene(scene);
         scene.getStylesheets().add("styles/main.css");
         stage.show();
     }

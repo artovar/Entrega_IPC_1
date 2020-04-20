@@ -50,6 +50,7 @@ public class PagarController implements Initializable {
     private void hacerPago(ActionEvent event) {
         ClubDBAccess clubDBAcess;
         clubDBAcess = ClubDBAccess.getSingletonClubDBAccess();
+        System.out.println(creditText.getText() + svcText.getText() + "");
         if(!((creditText.getText().length()) == 12) || !((svcText.getText().length()) == 3)){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error en el pago");
